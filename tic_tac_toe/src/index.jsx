@@ -49,9 +49,10 @@ import './index.css';
       this.state = {
         history: [{
           squares: Array(9).fill(null),
+          coordinate: Array(2).fill(null)
         }],
         stepNumber:0,
-        xIsNext: true,
+        xIsNext: true
       };
     }
 
@@ -59,16 +60,19 @@ import './index.css';
       const history = this.state.history.slice(0, this.state.stepNumber + 1);
       const current = history[history.length - 1];
       const squares = current.squares.slice();
+      let coordinate = current.coordinate.slice();
       if (calculateWinner(squares) || squares[i] ) {
         return;
       }
       squares[i] = this.state.xIsNext ? 'X' : 'O';
+      coordinate = calculateCoordinate(i);
       this.setState({
         history: history.concat([{
           squares: squares,
+          coordinate: coordinate
         }]),
         stepNumber: history.length,
-        xIsNext: !this.state.xIsNext,
+        xIsNext: !this.state.xIsNext
       });
     }
 
@@ -83,10 +87,10 @@ import './index.css';
       const history = this.state.history;
       const current = history[this.state.stepNumber];
       const winner = calculateWinner(current.squares);
-
+      
       const moves = history.map((step, move) => {
         const desc = move ?
-          'Go to move # ' + move :
+          'Go to move (' + step.coordinate[0] + ',' + step.coordinate[1] + ')':
           'Go to game start ';
           return(
             <li key={move}>
@@ -144,4 +148,45 @@ import './index.css';
       }
     }
     return null;
+  }
+
+  function calculateCoordinate(i) {
+    let x,y;
+    if(i === 0){
+      x = 1;
+      y = 1;
+    }
+    else if (i === 1){
+      x = 1;
+      y = 2;
+    }
+    else if (i === 2){
+      x = 1;
+      y = 3;
+    }
+    else if (i === 3){
+      x = 2;
+      y = 1;
+    }
+    else if (i === 4){
+      x = 2;
+      y = 2;
+    }
+    else if (i === 5){
+      x = 2;
+      y = 3;
+    }
+    else if (i === 6){
+      x = 3;
+      y = 1;
+    }
+    else if (i === 7){
+      x = 3;
+      y = 2;
+    }
+    else if (i === 8){
+      x = 3;
+      y = 3;
+    }
+    return [x, y];
   }
