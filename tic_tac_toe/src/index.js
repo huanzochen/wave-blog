@@ -52,6 +52,8 @@ import './index.css';
         }],
         stepNumber:0,
         xIsNext: true,
+        x: 0,
+        y: 0
       };
     }
 
@@ -69,6 +71,7 @@ import './index.css';
         }]),
         stepNumber: history.length,
         xIsNext: !this.state.xIsNext,
+        i: i
       });
     }
 
@@ -83,10 +86,13 @@ import './index.css';
       const history = this.state.history;
       const current = history[this.state.stepNumber];
       const winner = calculateWinner(current.squares);
-
+      const i = this.state.i;
+      const x = calculateCoordinate(i)[0];
+      const y = calculateCoordinate(i)[1];
+      
       const moves = history.map((step, move) => {
         const desc = move ?
-          'Go to move # ' + move :
+          'Go to move (' + x + ',' + y + ')':
           'Go to game start ';
           return(
             <li key={move}>
@@ -144,4 +150,45 @@ import './index.css';
       }
     }
     return null;
+  }
+
+  function calculateCoordinate(i) {
+    let x,y;
+    if(i === 0){
+      x = 1;
+      y = 1;
+    }
+    else if (i === 1){
+      x = 1;
+      y = 2;
+    }
+    else if (i === 2){
+      x = 1;
+      y = 3;
+    }
+    else if (i === 3){
+      x = 2;
+      y = 1;
+    }
+    else if (i === 4){
+      x = 2;
+      y = 2;
+    }
+    else if (i === 5){
+      x = 2;
+      y = 3;
+    }
+    else if (i === 6){
+      x = 3;
+      y = 1;
+    }
+    else if (i === 7){
+      x = 3;
+      y = 2;
+    }
+    else if (i === 8){
+      x = 3;
+      y = 3;
+    }
+    return [x, y];
   }
