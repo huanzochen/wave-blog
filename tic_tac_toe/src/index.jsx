@@ -49,11 +49,10 @@ import './index.css';
       this.state = {
         history: [{
           squares: Array(9).fill(null),
+          coordinate: Array(2).fill(null)
         }],
         stepNumber:0,
-        xIsNext: true,
-        x: 0,
-        y: 0
+        xIsNext: true
       };
     }
 
@@ -61,17 +60,19 @@ import './index.css';
       const history = this.state.history.slice(0, this.state.stepNumber + 1);
       const current = history[history.length - 1];
       const squares = current.squares.slice();
+      let coordinate = current.coordinate.slice();
       if (calculateWinner(squares) || squares[i] ) {
         return;
       }
       squares[i] = this.state.xIsNext ? 'X' : 'O';
+      coordinate = calculateCoordinate(i);
       this.setState({
         history: history.concat([{
           squares: squares,
+          coordinate: coordinate
         }]),
         stepNumber: history.length,
-        xIsNext: !this.state.xIsNext,
-        i: i
+        xIsNext: !this.state.xIsNext
       });
     }
 
@@ -86,13 +87,10 @@ import './index.css';
       const history = this.state.history;
       const current = history[this.state.stepNumber];
       const winner = calculateWinner(current.squares);
-      const i = this.state.i;
-      const x = calculateCoordinate(i)[0];
-      const y = calculateCoordinate(i)[1];
       
       const moves = history.map((step, move) => {
         const desc = move ?
-          'Go to move (' + x + ',' + y + ')':
+          'Go to move (' + step.coordinate[0] + ',' + step.coordinate[1] + ')':
           'Go to game start ';
           return(
             <li key={move}>
