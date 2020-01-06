@@ -26,6 +26,7 @@ body, input, select, textarea, a, li {
 }
 #sidebar > .inner  {
     margin-top:12em;
+    margin-bottom:50em;
     padding: 2.22222em 2.22222em 2.44444em 2.22222em ;
     position: relative;
 }
