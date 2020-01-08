@@ -3,9 +3,10 @@ const crypt = require('../util/crypt');
 
 
 
-//WRITE
+
 
 module.exports = class{
+    //WRITE
     static postRegister(req) {
         let username = req.body.user.username;
         let email = req.body.user.email;
@@ -13,4 +14,11 @@ module.exports = class{
         password = crypt.crypt(password);
         return(db.execute("INSERT INTO `blog`.`member` (`act_name`, `pwd`, `email`) VALUES (?, ?, ?)", [username, password, email]));
     }
+
+    //READ
+    static queryUser(req) {
+        let username = req.body.user.username;
+        return(db.execute("SELECT * FROM `blog`.`member` WHERE act_name = ? ", [username]));
+    }
+    
 }

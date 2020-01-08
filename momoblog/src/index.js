@@ -1,8 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import moment from 'moment';
-import { BrowserRouter, Switch, Route} from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Redirect, Link} from 'react-router-dom';
 import Registration from './auth/Registration';
+import Login from './auth/Login';
+
 
   class LoginBtnList extends React.Component {
     render() {
@@ -19,8 +21,8 @@ import Registration from './auth/Registration';
     render() {
       return (
         <ul>
-          <li className="list-group-item"><a className="sidebar_title list-group-item-action" href="/register">註冊</a></li>
-          <li className="list-group-item"><a className="sidebar_title list-group-item-action" href="https://www.google.com">登入</a></li>
+          <Link to="register"><li className="list-group-item sidebar_title list-group-item-action" >註冊</li></Link>
+          <Link to="login"><li className="list-group-item sidebar_title list-group-item-action">登入</li></Link>
           <li className="list-group-item"><a className="sidebar_title list-group-item-action" href="https://www.google.com">文章列表</a></li>
         </ul>
       );
@@ -43,9 +45,9 @@ import Registration from './auth/Registration';
 
     render () {
       return (
-        this.state.articles.map(articles => {
+        this.state.articles.map((articles,index) => {
           return (
-              <div className="article">
+              <div className="article" key={index}>
                 <div className="article_title">
                   <h1>{articles.title}</h1>
                   <div className="row">
@@ -125,7 +127,7 @@ import Registration from './auth/Registration';
     }
   }
 
-  class Register extends React.Component {
+  class RegisterAll extends React.Component {
     render() {
       return (
         <div className="container-fluid">
@@ -150,24 +152,81 @@ import Registration from './auth/Registration';
 
   }
 
+  class LoginAll extends React.Component {
+    render() {
+      return (
+        <div className="container-fluid">
+          <div className="row">
+            <div id="main" className="col-9">
+              <h1 className="title display-3"><span className="badge badge-secondary">茉茉部落格</span></h1>
+              <div className="inner">
+                  <Login />
+              </div>
+            </div>
+            <div id="sidebar" className="col-3">
+              <div className="inner">
+                <nav id="menu">
+                  <SideBtnList />
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+  }
+
+  const RouteFallback = (props) => { 
+    console.log('route fallback with location: ', props.location); 
+    return <Redirect to={{
+      pathname: '/',
+      from: props.location
+    }} /> 
+  } 
+
   //之後可以分開來寫
   const routes = [
     {
       path: '/',
       component: Index,
       exact: true,
-      breadcrumbName: 'Home'
+      breadcrumbName: 'Index'
     },
     {
       path: '/register',
-      component: Register,
+      component: RegisterAll,
       exact: true,
-      breadcrumbName: 'Home'
+      breadcrumbName: 'Register'
+    },
+    {
+      path: '/login',
+      component: LoginAll,
+      exact: true,
+      breadcrumbName: 'Login'
+    },
+    {
+      path: '/',
+      component: RouteFallback,
+      exact: false,
+      breadcrumbName: 'Index'
     }
   ];
 
   //之後可以分開來寫
   class App extends React.Component {
+    /*
+    constructor(props) {
+      super(props);
+      this.handleSuccessfulAuth = this.handleSuccessfulAuth.bind(this);
+    }
+
+    handleSuccessfulAuth(data) {
+      console.dir(data);
+      this.props.handleLogin(data);
+      this.props.history.push("/dashboard");
+    }
+    */
     render() {
       return (
         <BrowserRouter>
@@ -183,10 +242,7 @@ import Registration from './auth/Registration';
                     <route.component routes={routes} {...routeProps} />
                   )} />
                 )
-
               })}
-
-
           </Switch>
         </BrowserRouter>
       );

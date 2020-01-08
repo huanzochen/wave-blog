@@ -24,7 +24,7 @@ export default class Registration extends Component {
 
     handleSubmit(event) {
         const {username, email, password, password_confirmation} = this.state;
-        axios.post('http://momoweb.hopto.me:3200/registration/submit', {
+        axios.post('http://momoweb.hopto.me:3200/api/registration/submit', {
             user: {
                 username: username,
                 email: email,
@@ -113,10 +113,10 @@ export default class Registration extends Component {
                             />
                         </div>
                         <div className="row justify-content-between validate">
-                            <div className="col-4">
+                            <div className="col-5">
                                 <button type="submit" className="btn btn-light">註冊</button>
                             </div>
-                            <div className="col-8">
+                            <div className="col-7">
                                 <p className="error_code">{this.state.registrationErrors}</p>
                             </div>
                         </div>
