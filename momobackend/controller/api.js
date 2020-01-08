@@ -13,12 +13,11 @@ exports.articleList = async (req, res, next) => {
         articleList = rows;
     })
     .catch((err) => {
-        console.dir("ERR getAllArticle!");
+        console.dir("ERR getAllArticle");
         console.dir(err);
     })
 
-
-
+    res.send(articleList);
 }
 
 

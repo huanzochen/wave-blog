@@ -31,6 +31,11 @@ body, input, select, textarea, a, li {
     position: relative;
 }
 
+#menu > .inner {
+    margin-top:12em;
+    margin-bottom:50em;
+}
+
 
 
 

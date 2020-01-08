@@ -4,6 +4,6 @@ const db = require('../util/db');
 
 module.exports = class{
     static getAllArticle() {
-        return db.query('SELECT * FROM blog.article');
+        return db.query('SELECT * FROM blog.article order by create_time DESC;');
     }
 }
