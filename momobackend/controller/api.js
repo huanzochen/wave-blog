@@ -24,7 +24,7 @@ exports.articleList = async (req, res, next) => {
 /* WRITE ***************************************/
 exports.registration = async (req, res, next) => {
     //console.dir(req.body);
-    console.dir(res.body);
+    console.dir(req.body);
     
     res.send("hi"); // update to match the domain you will make the request from
     
