@@ -2,19 +2,19 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <link rel="icon" href=/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <meta
       name="description"
       content="Web site created using create-react-app"
     />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="apple-touch-icon" href="/logo192.png" />
     <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <link rel="manifest" href="/manifest.json" />
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -26,14 +26,58 @@
     -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="%PUBLIC_URL%/style.css" />
+    <link rel="stylesheet" href="/style.css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <title>React App</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
+    <div id="root">
+      <div class="container-fluid">
+        <div class="row">
+          <div id="main" class="col-9">
+            <h1 class="title display-3"><span class="badge badge-secondary">茉茉部落格</span></h1>
+            <div class="inner">
+              <div class="article">
+                <div class="article_title">
+                  <h1>hihihihihihhi</h1>
+
+                  <div class="row">
+                    <div class="article_authorandtime col-3">
+                      <p>作者: 春花</p> 
+                    </div>
+                    <div class="article_authorandtime col-7">
+                      <p>2019年10月20日 </p>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="article_content">
+                  <p>contentcontentco contentcontentcocontentcontentcocontentcontentcocont entcontentc
+                    contentcon tentcocontentcontentcoconte ntcontentcocont
+                    entcontentcocontentcontentcocontentcontentcontentconte
+                    ntcontentcontentcontentcontentcontentcontentcontentcontent
+                    contentcon tetentcontentcontetentcontentcontetentcontentcontetentcon
+                    tentcont etentcontentcontent</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <div id="sidebar" class="col-3">
+            <div class="inner">
+              <nav id="menu">
+                <li class="list-group-item"><a class="sidebar_title list-group-item-action" href="https://www.google.com">註冊</a></li>
+                <li class="list-group-item"><a class="sidebar_title list-group-item-action" href="https://www.google.com">登入</a></li>
+                <li class="list-group-item"><a class="sidebar_title list-group-item-action" href="https://www.google.com">文章列表</a></li>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
