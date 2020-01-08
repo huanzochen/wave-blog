@@ -1,8 +1,11 @@
 
 /* Type */
+body, input, select, textarea, a, li, p, h1{
+  font-family: "微軟正黑體", sans-serif;
+}
+
 body, input, select, textarea {
   color: #7f888f;
-  font-family: "微軟正黑體", sans-serif;
   font-size: 13pt;
   font-weight: 400;
   line-height: 1.65; 
@@ -41,8 +44,11 @@ a, li, p, h1 {
 }
 .article .article_content {
   padding-right: 2em;
-  padding-bottom: 2em;
   background-color: rgb(99, 98, 189);
+}
+.article .article_authorandtime {
+  background-color: rgb(221, 195, 45);
+  padding-left: 2em;
 }
 
 #sidebar {
