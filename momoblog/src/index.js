@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import moment from 'moment';
-
+import { BrowserRouter, Switch, Route} from 'react-router-dom';
 
 
 
@@ -94,7 +94,7 @@ import moment from 'moment';
 
 
 
-  class UI extends React.Component {
+  class Index extends React.Component {
     render() {
       return (
         <div className="container-fluid">
@@ -119,10 +119,23 @@ import moment from 'moment';
 
   }
 
+  class App extends React.Component {
+    render() {
+      return (
+        <BrowserRouter>
+          <Switch>
+              {/* The corresponding component will show here if the current URL matches the path */}
+              <Route path="/" exact component={Index} />
+              
+          </Switch>
+        </BrowserRouter>
+      );
+    }
+  }
 
 
   ReactDOM.render(
-    <UI />,
+    <App />,
     document.getElementById('root')
   );
 
