@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import axios from 'axios';
 
 export default class Registration extends Component {
     constructor(props) {
@@ -23,6 +24,19 @@ export default class Registration extends Component {
     }
 
     handleSubmit(event) {
+        const {email, password, password_confirmation} = this.state;
+        axios.post('http://momoweb.hopto.me:3200/registration/submit', {
+            user: {
+                email: email,
+                password: password,
+                password_confirmation: password_confirmation
+            }
+        }
+        ).then(response => {
+            console.log("registration res", response);
+        }).catch(error => {
+            console.dir("registration Err", error);
+        })
         event.preventDefault();
     }
     

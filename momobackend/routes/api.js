@@ -11,4 +11,7 @@ router.get('/', function(req, res, next) {
 router.get('/api/articlelist', api.articleList);
 
 
+router.post('/registration/submit', api.registration);
+
+
 module.exports = router;
