@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import moment from 'moment';
 import { BrowserRouter, Switch, Route} from 'react-router-dom';
+import Registration from './auth/Registration';
 
   class LoginBtnList extends React.Component {
     render() {
@@ -159,7 +160,7 @@ import { BrowserRouter, Switch, Route} from 'react-router-dom';
     },
     {
       path: '/register',
-      component: Register,
+      component: Registration,
       exact: true,
       breadcrumbName: 'Home'
     }
