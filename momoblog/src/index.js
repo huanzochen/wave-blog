@@ -19,7 +19,7 @@ import Registration from './auth/Registration';
     render() {
       return (
         <ul>
-          <li className="list-group-item"><a className="sidebar_title list-group-item-action" onclick="alert('click');" href="/register">註冊</a></li>
+          <li className="list-group-item"><a className="sidebar_title list-group-item-action" href="/register">註冊</a></li>
           <li className="list-group-item"><a className="sidebar_title list-group-item-action" href="https://www.google.com">登入</a></li>
           <li className="list-group-item"><a className="sidebar_title list-group-item-action" href="https://www.google.com">文章列表</a></li>
         </ul>
@@ -48,11 +48,11 @@ import Registration from './auth/Registration';
               <div className="article">
                 <div className="article_title">
                   <h1>{articles.title}</h1>
-                  <div class="row">
-                    <div class="article_authorandtime col-3">
+                  <div className="row">
+                    <div className="article_authorandtime col-3">
                       <p>{articles.act_name}</p> 
                     </div>
-                    <div class="article_authorandtime col-7">
+                    <div className="article_authorandtime col-7">
                       <p>{moment(articles.create_time).format('YYYY年MM月DD日')} </p>
                     </div>
                   </div>
@@ -133,7 +133,7 @@ import Registration from './auth/Registration';
             <div id="main" className="col-9">
               <h1 className="title display-3"><span className="badge badge-secondary">茉茉部落格</span></h1>
               <div className="inner">
-                  <RegisterTemplate />
+                  <Registration />
               </div>
             </div>
             <div id="sidebar" className="col-3">
@@ -160,7 +160,7 @@ import Registration from './auth/Registration';
     },
     {
       path: '/register',
-      component: Registration,
+      component: Register,
       exact: true,
       breadcrumbName: 'Home'
     }

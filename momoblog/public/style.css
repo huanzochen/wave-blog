@@ -1,6 +1,6 @@
 
 /* Type */
-body, input, select, textarea, a, li, p, h1{
+body, input, select, textarea, a, li, p, h1, button{
   font-family: "微軟正黑體", sans-serif;
 }
 
@@ -48,6 +48,10 @@ a, li, p, h1 {
   padding-bottom: 1em;
   padding-left: 2em;
   width: 50%;
+}
+.article .article_title .validate .error_code {
+  color: red;
+  font-size:1em;
 }
 .article .article_content {
   padding-right: 2em;
