@@ -15,6 +15,13 @@ module.exports = class{
         return(db.execute("INSERT INTO `blog`.`member` (`act_name`, `pwd`, `email`) VALUES (?, ?, ?)", [username, password, email]));
     }
 
+    static postArticle(req) {
+        let title = req.body.newArticle.title;
+        let content = req.body.newArticle.content;
+        console.dir(req.body.newArticle.user);
+        return db.execute("INSERT INTO `blog`.`article` (`act_name`, `title`, `content`, create_time) VALUES (?, ?, ?, NOW())", [username, title, content]);
+    }
+
     //READ
     static queryUser(req) {
         let username = req.body.user.username;

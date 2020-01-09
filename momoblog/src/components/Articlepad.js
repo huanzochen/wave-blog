@@ -7,7 +7,7 @@ export default class Articlepad extends React.Component {
         super(props);
         this.state = {
             title: "",
-            content: "",
+            content: ""
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -21,16 +21,16 @@ export default class Articlepad extends React.Component {
     }
 
     handleSubmit(event) {
-        const {title,content} = this.state;
         axios.post('http://momoweb.hopto.me:3200/api/newarticle/submit', {
             newArticle: {
-                title: title,
-                content: content,
+                title: this.state.title,
+                content: this.state.content,
+                user: this.props.user
             }
         }
         ).then(response => {
             if (response.data.isRegistered){
-                console.dir("註冊成功!");
+                console.dir("新增文章失敗!");
                 this.setState({registrationErrors: response.data.errorText});
             }
             else if (!response.data.isRegistered){
@@ -56,12 +56,25 @@ export default class Articlepad extends React.Component {
                             <form onSubmit={this.handleSubmit} >
                                 <div className="row add_article">
                                     <p>標題: </p>
-                                    <textarea className="form-control" id="exampleFormControlTextarea1" name="title" rows="1" required></textarea>
+                                    
+                                    <textarea className="form-control"
+                                     id="exampleFormControlTextarea1"
+                                     name="title"
+                                     rows="1"
+                                     value={this.state.title}
+                                     onChange={this.handleChange}   
+                                     required></textarea>
                                 </div>
                                 <div className="row add_article">
                                     <p>內容:</p>
                                     <div className="input-group">
-                                    <textarea className="form-control" id="exampleFormControlTextarea2" name="content" rows="5" required></textarea>
+                                    <textarea className="form-control" 
+                                     id="exampleFormControlTextarea2" 
+                                     name="content" 
+                                     rows="5" 
+                                     value={this.state.content} 
+                                     onChange={this.handleChange}  
+                                     required></textarea>
                                     </div>
                                 </div>
                                 <div className="row add_article">
