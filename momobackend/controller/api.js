@@ -24,7 +24,7 @@ exports.articleList = async (req, res, next) => {
 
 exports.login = async (req, res, next) => {
     let account;
-
+    console.dir(req.body);
     await member.queryUser(req, res)
     .then(([rows]) => {
         account = rows;
@@ -65,28 +65,43 @@ exports.registration = async (req, res, next) => {
             .then((err, results, fields) => {
                 if(err[0].affectedRows == 1){
                     console.dir("註冊-有新用戶註冊成功!");
-                    res.send("registration_ok");
+                    res.send({
+                        isRegistered: true,
+                        errorText: "註冊成功!"         
+                    });
                 }
                 else{
                     console.dir("註冊-有新用戶註冊失敗!");
-                    res.send("registration_failed");
+                    res.send({
+                        isRegistered: false,
+                        errorText: "註冊失敗!"         
+                    });
                 }
             })
             .catch(err =>  {
                 if(err.sqlState == "23000"){
                     console.dir("註冊-有人註冊重複名稱的用戶!");
-                    res.send("registration_duplicated"); // 主鍵重複
+                    res.send({
+                        isRegistered: false,
+                        errorText: "帳號名稱重複!請更換帳號名稱"         
+                    }); // 主鍵重複
                 }
                 else {
                     console.dir("註冊-註冊用戶的未知錯誤!");
                     console.dir(err);
-                    res.send("unknownerr");
+                    res.send({
+                        isRegistered: false,
+                        errorText: "發生了未知錯誤"         
+                    });
                 }
             });
     }
     else if(req.body.user.password != req.body.user.password_confirmation){
         console.dir("註冊-兩次密碼不一致!");
-        res.send("password_validate_err");
+        res.send({
+            isRegistered: false,
+            errorText: "兩次密碼不一致"         
+        });
     }
     
     

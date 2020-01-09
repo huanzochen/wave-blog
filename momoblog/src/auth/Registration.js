@@ -33,20 +33,12 @@ export default class Registration extends Component {
             }
         }
         ).then(response => {
-            if (response.data === 'registration_ok'){
-                this.setState({registrationErrors:"註冊成功!"});
+            if (response.data.isRegistered){
+                console.dir("註冊成功!");
+                this.setState({registrationErrors: response.data.errorText});
             }
-            else if (response.data === 'password_validate_err'){
-                this.setState({registrationErrors:"兩次密碼不一致"});
-            }
-            else if (response.data === 'registration_failed'){
-                this.setState({registrationErrors:"註冊失敗!"});
-            }
-            else if (response.data === 'registration_duplicated'){
-                this.setState({registrationErrors:"帳號名稱重複!請更換帳號名稱"});
-            }
-            else if (response.data === 'unknownerr'){
-                this.setState({registrationErrors:"發生了未知錯誤"});
+            else if (!response.data.isRegistered){
+                this.setState({registrationErrors: response.data.errorText});
             }
             console.log("註冊結果!", response);
         }).catch(error => {

@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
+import React from 'react';
 import axios from 'axios';
 
-export default class Login extends Component {
+export default class Login extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -27,18 +27,23 @@ export default class Login extends Component {
                 username: username,
                 password: password
             }
-        }
-        ).then(response => {
+        },
+        {
+            withCredentials: true
+        },
+        )
+        .then(response => {
             if (response.data.isLoggedIn){
                 console.dir("登入成功!");
                 this.setState({loginErrors: response.data.errorText});
-                //this.props.handleSuccessfulAuth(response.data);
+                this.props.handleSuccessfulAuth(response.data);
             }
             else if (!response.data.isLoggedIn){
                 this.setState({loginErrors:response.data.errorText});
             }
             console.log("登入結果!", response);
-        }).catch(error => {
+        })
+        .catch(error => {
             console.dir("登入失敗!", error);
         })
         event.preventDefault();
