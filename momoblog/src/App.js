@@ -27,10 +27,22 @@ export default class App extends React.Component {
       this.handleLogin = this.handleLogin.bind(this);
       //this.handleLogout = this.handleLogout.bind(this); 暫時用不到
     }
-    /*
+    
     checkLoginStatus() {
-      axios.get("http://momoweb.hopto.me:3200/api/login/submit", { withCredentials:true})
+      axios.get("http://momoweb.hopto.me:3200/api/logged_in", { withCredentials:true})
       .then(response => {
+          if (response.data.logged_in && this.state.loggedInStatus === "NOT_LOGGED_IN"){
+            this.setState({
+                loggedInStatus: "LOGGED_IN",
+                user: response.data.username
+              });
+          }
+          else if (!response.data.logged_in && this.state.loggedInStatus === "LOGGED_IN") {
+            this.setState({
+                loggedInStatus: "NOT_LOGGED_IN",
+                user: {}
+              });
+          }
           console.log("logged in?", response);
       })
       .catch(error => {
@@ -38,7 +50,11 @@ export default class App extends React.Component {
       });
       
     }
-    */
+
+    componentDidMount() {
+        this.checkLoginStatus();
+    }
+    
 
     handleLogin(data) {
       this.setState({

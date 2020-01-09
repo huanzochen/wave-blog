@@ -3,6 +3,8 @@ const _ = require('lodash');
 const article = require('../model/article');
 const member = require('../model/member');
 const crypt = require('../util/crypt');
+const jwt = require('jsonwebtoken');
+const cookieParser = require('cookie-parser');
 
 
 /* READ *******************************************/
@@ -37,14 +39,29 @@ exports.login = async (req, res, next) => {
             });
         }
         else if (crypt.crypt(req.body.user.password) === account[0].pwd){
+
             console.dir(crypt.crypt(req.body.user.password));
             console.dir("登入-登入成功");
+
+            
+
+            res.cookie('userid', req.body.user.username, { path: '/', signed: true});
             res.send({
                 isLoggedIn: true,
-                errorText: "登入成功"         
+                errorText: "登入成功"       
             });
+            /*
+            let token = jwt.sign(req.body.user.username, 'cat', {});
+            */
+
+            console.dir(req.session);
+            console.dir("reqqqqqqq");
+            console.dir(req);
+            console.dir(req.signedCookies.userid);
+            console.dir(req.sessionID);
+
         }
-        console.dir([rows]);
+        //console.dir([rows]);
         console.dir("/////////////////////////");
         
     })
@@ -53,6 +70,31 @@ exports.login = async (req, res, next) => {
         console.dir(err);
     });
 
+}
+
+exports.logged_in = async (req, res, next) => {
+    let account;
+    await member.validateUser(req, res)
+    .then(([rows]) => {
+        account = rows;
+        //req.session.userid = req.body.user.username;
+        console.dir(req.cookie);
+        if (JSON.stringify(account) === '[]'){
+            res.send({
+                logged_in: false,
+                errorText: "未登入",
+                user:""     
+            });
+        }
+        else if (account[0].act_name == req.signedCookies.userid ) {
+            console.dir("驗證成功!");
+            res.send({
+                logged_in: true,
+                errorText: "登入成功",
+                user:req.signedCookies.userid     
+            });
+        } 
+    });
 }
 
 

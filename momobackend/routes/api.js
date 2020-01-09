@@ -9,10 +9,11 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/api/articlelist', api.articleList);
-
+router.get('/api/logged_in', api.logged_in);
 
 router.post('/api/registration/submit', api.registration);
-router.post('/api/login/submit', api.login)
+router.post('/api/login/submit', api.login);
+
 
 
 module.exports = router;

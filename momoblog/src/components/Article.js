@@ -11,7 +11,7 @@ export default class Article extends React.Component {
       };
     }
 
-    async componentWillMount() {
+    async componentDidMount() {
       let b = await fetch('http://momoweb.hopto.me:3200/api/articlelist');
       let articles = await b.json();
       this.setState({articles});

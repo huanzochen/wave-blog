@@ -35,13 +35,14 @@ export default class Login extends React.Component {
         .then(response => {
             if (response.data.isLoggedIn){
                 console.dir("登入成功!");
+                //localStorage.setItem('usertoken', response.data.token);
                 this.setState({loginErrors: response.data.errorText});
+                console.log("登入結果!", response);
                 this.props.handleSuccessfulAuth(response.data);
             }
             else if (!response.data.isLoggedIn){
                 this.setState({loginErrors:response.data.errorText});
             }
-            console.log("登入結果!", response);
         })
         .catch(error => {
             console.dir("登入失敗!", error);

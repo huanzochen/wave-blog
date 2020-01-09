@@ -20,5 +20,13 @@ module.exports = class{
         let username = req.body.user.username;
         return(db.execute("SELECT * FROM `blog`.`member` WHERE act_name = ? ", [username]));
     }
+
+    static validateUser(req) {
+        let username = "";
+        if(req.signedCookies.userid != null){
+            username = req.signedCookies.userid;
+        }
+        return(db.execute("SELECT * FROM `blog`.`member` WHERE act_name = ? ", [username]));
+    }
     
 }
