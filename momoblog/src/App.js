@@ -4,6 +4,7 @@ import React from 'react';
 import Homepage from './components/Homepage';
 import RegisterAll from './components/RegisterAll';
 import LoginAll from './components/LoginAll';
+import Articlepad from './components/Articlepad';
 
 
 
@@ -115,11 +116,17 @@ const routes = [
     breadcrumbName: 'Login'
 },
 {
+    path: '/Articlepad',
+    component: Articlepad,
+    exact: false,
+    breadcrumbName: 'Articlepad'
+},
+{
     path: '/',
     component: RouteFallback,
     exact: false,
     breadcrumbName: 'Index'
-}
+},
 ];
 
  

@@ -17,5 +17,7 @@ router.post('/api/registration/submit', api.registration);
 router.post('/api/login/submit', api.login);
 router.get('/api/logout/submit', api.logout);
 
+//router.post('/api/newarticle/submit', api.addArticle);
+
 
 module.exports = router;

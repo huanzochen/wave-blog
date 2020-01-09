@@ -1,6 +1,7 @@
 import React from 'react';
 import SideBtnList from './SideBtnList';
 import Article from './Article';
+import AddarticleListener from './AddarticleListener'
 import axios from 'axios';
 
 export default class Homepage extends React.Component {
@@ -29,6 +30,10 @@ export default class Homepage extends React.Component {
             <div id="main" className="col-9">
               <h1 className="title display-3"><span className="badge badge-secondary">茉茉部落格</span></h1>
               <div className="inner">
+                <AddarticleListener
+                  handleLogoutClick={this.handleLogoutClick}
+                  loggedInStatus={this.props.loggedInStatus}
+                 />
                 <Article />
               </div>
             </div>
