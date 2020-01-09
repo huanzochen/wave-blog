@@ -6,8 +6,8 @@ class LoginBtnList extends React.Component {
     render() {
       return (
         <ul>
-          <li className="list-group-item"><a className="sidebar_title list-group-item-action" href="https://www.google.com">登出</a></li>
-          <li className="list-group-item"><a className="sidebar_title list-group-item-action" href="https://www.google.com">文章列表</a></li>
+            <Link to="logout"><li className="list-group-item sidebar_title list-group-item-action">登出</li></Link>
+            <Link to="Homepage"><li className="list-group-item sidebar_title list-group-item-action">文章列表</li></Link>
         </ul>
       );
     }
@@ -19,7 +19,7 @@ class NoneLoginBtnList extends React.Component {
         <ul>
             <Link to="register"><li className="list-group-item sidebar_title list-group-item-action" >註冊</li></Link>
             <Link to="login"><li className="list-group-item sidebar_title list-group-item-action">登入</li></Link>
-            <li className="list-group-item"><a className="sidebar_title list-group-item-action" href="https://www.google.com">文章列表</a></li>
+            <Link to="Homepage"><li className="list-group-item sidebar_title list-group-item-action">文章列表</li></Link>
         </ul>
         );
     }
@@ -33,7 +33,9 @@ export default class SideBtnList extends React.Component {
       }
     }
     render() {
-      const isLogin = this.state.isLogin;
+      const isLogin = this.props.loggedInStatus;
+      console.dir("isLogin");
+      console.dir(isLogin);
       if (isLogin) {
         return (
           <LoginBtnList />

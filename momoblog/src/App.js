@@ -18,12 +18,10 @@ const RouteFallback = (props) => {
 export default class App extends React.Component {
     constructor() {
       super();
-      
       this.state = {
         loggedInStatus: "NOT_LOGGED_IN",
         user: {}
       };
-
       this.handleLogin = this.handleLogin.bind(this);
       //this.handleLogout = this.handleLogout.bind(this); 暫時用不到
     }
@@ -61,7 +59,6 @@ export default class App extends React.Component {
         loggedInStatus: "LOGGED_IN",
         user: data.user
       });
-      console.log(this.state.loggedInStatus);
     }
 
     render() {
@@ -76,7 +73,9 @@ export default class App extends React.Component {
                   path={path} 
                   exact={exact} 
                   render={(routeProps) => (
-                    <route.component routes={routes} {...routeProps} />
+                    <route.component routes={routes} {...routeProps} 
+                        loggedInStatus={this.state.loggedInStatus}
+                    />
                   )} />
                 )
               })}
