@@ -1,8 +1,24 @@
 import React from 'react';
 import SideBtnList from './SideBtnList';
 import Article from './Article';
+import axios from 'axios';
 
 export default class Homepage extends React.Component {
+    constructor(props) {
+      super(props);
+      this.handleLogoutClick = this.handleLogoutClick.bind(this);
+    }
+
+    handleLogoutClick() {
+      axios.get("http://momoweb.hopto.me:3200/api/logout/submit", { withCredentials: true})
+       .then((response) => {
+          this.props.handleLogout();
+       })
+       .catch(error => {
+         console.log("logout error", error);
+       })
+    }
+
     render() {
       console.dir("loggedInStatus");
       console.dir(this.props.loggedInStatus);
@@ -20,6 +36,7 @@ export default class Homepage extends React.Component {
               <div className="inner">
                 <nav id="menu">
                   <SideBtnList 
+                    handleLogoutClick={this.handleLogoutClick}
                     loggedInStatus={this.props.loggedInStatus}
                    />
                 </nav>

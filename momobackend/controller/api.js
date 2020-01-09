@@ -42,17 +42,11 @@ exports.login = async (req, res, next) => {
 
             console.dir(crypt.crypt(req.body.user.password));
             console.dir("登入-登入成功");
-
-            
-
             res.cookie('userid', req.body.user.username, { path: '/', signed: true});
             res.send({
                 isLoggedIn: true,
                 errorText: "登入成功"       
             });
-            /*
-            let token = jwt.sign(req.body.user.username, 'cat', {});
-            */
 
             console.dir(req.session);
             console.dir("reqqqqqqq");
@@ -78,6 +72,7 @@ exports.logged_in = async (req, res, next) => {
     .then(([rows]) => {
         account = rows;
         //req.session.userid = req.body.user.username;
+        console.dir("cookie");
         console.dir(req.cookie);
         if (JSON.stringify(account) === '[]'){
             res.send({
@@ -94,6 +89,18 @@ exports.logged_in = async (req, res, next) => {
                 user:req.signedCookies.userid     
             });
         } 
+    });
+}
+
+exports.logout = async (req, res, next) => {
+    await article.getAllArticle()
+    .then(([rows]) => {
+        console.dir("logout");
+        console.dir(req);
+        console.dir(req.signedCookies.userid);
+        console.dir(req.sessionID);
+        req.session.destroy;
+        res.send("200");
     });
 }
 

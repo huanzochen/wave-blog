@@ -3,6 +3,7 @@ import Registration from '../auth/Registration';
 import SideBtnList from './SideBtnList';
 
 
+
 export default class RegisterAll extends React.Component {
     render() {
       return (

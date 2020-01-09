@@ -23,7 +23,7 @@ export default class App extends React.Component {
         user: {}
       };
       this.handleLogin = this.handleLogin.bind(this);
-      //this.handleLogout = this.handleLogout.bind(this); 暫時用不到
+      this.handleLogout = this.handleLogout.bind(this);
     }
     
     checkLoginStatus() {
@@ -61,6 +61,13 @@ export default class App extends React.Component {
       });
     }
 
+    handleLogout() {
+        this.setState({
+          loggedInStatus: "NOT_LOGGED_IN",
+          user: {}
+        });
+    }
+
     render() {
       return (
         <BrowserRouter>
@@ -73,7 +80,9 @@ export default class App extends React.Component {
                   path={path} 
                   exact={exact} 
                   render={(routeProps) => (
-                    <route.component routes={routes} {...routeProps} 
+                    <route.component routes={routes} {...routeProps}
+                        handleLogin={this.handleLogin}
+                        handleLogout={this.handleLogout}
                         loggedInStatus={this.state.loggedInStatus}
                     />
                   )} />

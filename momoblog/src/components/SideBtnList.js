@@ -6,7 +6,7 @@ class LoginBtnList extends React.Component {
     render() {
       return (
         <ul>
-            <Link to="logout"><li className="list-group-item sidebar_title list-group-item-action">登出</li></Link>
+            <Link to="/"><li className="list-group-item sidebar_title list-group-item-action" onClick={() => this.props.handleLogoutClick()}>登出</li></Link>
             <Link to="Homepage"><li className="list-group-item sidebar_title list-group-item-action">文章列表</li></Link>
         </ul>
       );
@@ -26,19 +26,13 @@ class NoneLoginBtnList extends React.Component {
 }
 
 export default class SideBtnList extends React.Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        isLogin : false
-      }
-    }
     render() {
       const isLogin = this.props.loggedInStatus;
       console.dir("isLogin");
       console.dir(isLogin);
-      if (isLogin) {
+      if (isLogin === "LOGGED_IN") {
         return (
-          <LoginBtnList />
+          <LoginBtnList handleLogoutClick={this.props.handleLogoutClick} />
         );
       }
       else {

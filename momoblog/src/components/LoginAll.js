@@ -2,18 +2,20 @@ import React from 'react';
 import Login from '../auth/Login';
 import SideBtnList from './SideBtnList';
 
+
 export default class LoginAll extends React.Component {
     constructor(props) {
       super(props);
   
       this.handleSuccessfulAuth = this.handleSuccessfulAuth.bind(this);
-      //this.handleLogoutClick = this.handleLogoutClick.bind(this); 還沒用到
+      
     }
 
     handleSuccessfulAuth(data) {
       this.props.handleLogin(data);
       this.props.history.push("/");
     }
+
 
     render() {
       return (
