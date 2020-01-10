@@ -3,7 +3,6 @@ const _ = require('lodash');
 const article = require('../model/article');
 const member = require('../model/member');
 const crypt = require('../util/crypt');
-const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 
 
@@ -20,6 +19,8 @@ exports.articleList = async (req, res, next) => {
         console.dir("ERR getAllArticle");
         console.dir(err);
     })
+
+    console.dir(req.session.username);
 
     res.send(articleList);
 }
@@ -42,7 +43,15 @@ exports.login = async (req, res, next) => {
 
             console.dir(crypt.crypt(req.body.user.password));
             console.dir("登入-登入成功");
-            res.cookie('userid', req.body.user.username, { path: '/', signed: true, id:req.body.user.username});
+            
+            req.session.username = req.body.user.username;
+            res.cookie('userid', req.body.user.username, {
+                maxAge: 86400000,
+                sucure:false, 
+                path: '/', 
+                signed: true, 
+                id:req.body.user.username
+            });
             res.send({
                 isLoggedIn: true,
                 errorText: "登入成功"       

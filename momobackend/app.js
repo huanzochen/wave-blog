@@ -15,7 +15,6 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-app.use(cookieParser('cat'));
 app.use(expressSession({
   secret: 'cat',
   resave: false,
