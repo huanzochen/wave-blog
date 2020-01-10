@@ -25,16 +25,15 @@ export default class Articlepad extends React.Component {
             newArticle: {
                 title: this.state.title,
                 content: this.state.content,
-                user: this.props.user
+                username: this.props.username,
             }
         }
         ).then(response => {
-            if (response.data.isRegistered){
-                console.dir("新增文章失敗!");
-                this.setState({registrationErrors: response.data.errorText});
+            if (response.data.isAddArticle){
+                console.dir(response.data.errorText);
             }
             else if (!response.data.isRegistered){
-                this.setState({registrationErrors: response.data.errorText});
+                console.dir(response.data.errorText);
             }
             console.log("註冊結果!", response);
         }).catch(error => {

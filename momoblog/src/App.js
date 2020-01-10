@@ -21,7 +21,7 @@ export default class App extends React.Component {
       super();
       this.state = {
         loggedInStatus: "NOT_LOGGED_IN",
-        user: {}
+        username: {}
       };
       this.handleLogin = this.handleLogin.bind(this);
       this.handleLogout = this.handleLogout.bind(this);
@@ -33,13 +33,13 @@ export default class App extends React.Component {
           if (response.data.logged_in && this.state.loggedInStatus === "NOT_LOGGED_IN"){
             this.setState({
                 loggedInStatus: "LOGGED_IN",
-                user: response.data.username
+                username: response.data.username
               });
           }
           else if (!response.data.logged_in && this.state.loggedInStatus === "LOGGED_IN") {
             this.setState({
                 loggedInStatus: "NOT_LOGGED_IN",
-                user: {}
+                username: {}
               });
           }
           console.log("logged in?", response);
@@ -58,14 +58,14 @@ export default class App extends React.Component {
     handleLogin(data) {
       this.setState({
         loggedInStatus: "LOGGED_IN",
-        user: data.user
+        username: data.username
       });
     }
 
     handleLogout() {
         this.setState({
           loggedInStatus: "NOT_LOGGED_IN",
-          user: {}
+          username: {}
         });
     }
 
@@ -85,7 +85,7 @@ export default class App extends React.Component {
                         handleLogin={this.handleLogin}
                         handleLogout={this.handleLogout}
                         loggedInStatus={this.state.loggedInStatus}
-                        user={this.state.user}
+                        username={this.state.username}
                     />
                   )} />
                 )
@@ -119,7 +119,7 @@ const routes = [
 {
     path: '/Articlepad',
     component: Articlepad,
-    exact: false,
+    exact: true,
     breadcrumbName: 'Articlepad'
 },
 {
