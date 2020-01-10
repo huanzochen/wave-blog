@@ -181,8 +181,6 @@ exports.addArticle = async (req, res, next) => {
                     errorText: "新增文章成功!"         
                 });
             }
-            console.dir(result);
-            console.dir(fields);
         })
         .catch(err => {
             console.dir("新增-新增文章時出現錯誤!");

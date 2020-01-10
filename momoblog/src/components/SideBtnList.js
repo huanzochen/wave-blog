@@ -27,10 +27,10 @@ class NoneLoginBtnList extends React.Component {
 
 export default class SideBtnList extends React.Component {
     render() {
-      const isLogin = this.props.loggedInStatus;
+      
       console.dir("isLogin");
-      console.dir(isLogin);
-      if (isLogin === "LOGGED_IN") {
+      console.dir(this.props.loggedInStatus);
+      if (this.props.loggedInStatus === "LOGGED_IN") {
         return (
           <LoginBtnList handleLogoutClick={this.props.handleLogoutClick} />
         );

@@ -25,6 +25,7 @@ export default class App extends React.Component {
       };
       this.handleLogin = this.handleLogin.bind(this);
       this.handleLogout = this.handleLogout.bind(this);
+      this.handleLogoutClick = this.handleLogoutClick.bind(this);
     }
     
     checkLoginStatus() {
@@ -69,6 +70,16 @@ export default class App extends React.Component {
         });
     }
 
+    handleLogoutClick() {
+        axios.get("http://momoweb.hopto.me:3200/api/logout/submit", { withCredentials: true})
+         .then((response) => {
+            this.handleLogout();
+         })
+         .catch(error => {
+           console.log("logout error", error);
+         })
+    }
+
     render() {
       return (
         <BrowserRouter>
@@ -84,6 +95,7 @@ export default class App extends React.Component {
                     <route.component routes={routes} {...routeProps}
                         handleLogin={this.handleLogin}
                         handleLogout={this.handleLogout}
+                        handleLogoutClick={this.handleLogoutClick}
                         loggedInStatus={this.state.loggedInStatus}
                         username={this.state.username}
                     />

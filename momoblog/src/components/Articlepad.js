@@ -6,8 +6,8 @@ export default class Articlepad extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            title: "",
-            content: ""
+            title: this.props.location.state.title || "",
+            content: this.props.location.state.content || "",
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -31,6 +31,7 @@ export default class Articlepad extends React.Component {
         ).then(response => {
             if (response.data.isAddArticle){
                 console.dir(response.data.errorText);
+                this.props.history.push("/");
             }
             else if (!response.data.isRegistered){
                 console.dir(response.data.errorText);
@@ -89,7 +90,7 @@ export default class Articlepad extends React.Component {
                   <div className="inner">
                     <nav id="menu">
                       <SideBtnList 
-                        handleLogoutClick={this.handleLogoutClick}
+                        handleLogoutClick={this.props.handleLogoutClick}
                         loggedInStatus={this.props.loggedInStatus}
                        />
                     </nav>
