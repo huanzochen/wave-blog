@@ -6,8 +6,8 @@ export default class Articlepad extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            title: "",
-            content: ""
+            title: this.props.location.state.title || "",
+            content: this.props.location.state.content || "",
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -25,16 +25,16 @@ export default class Articlepad extends React.Component {
             newArticle: {
                 title: this.state.title,
                 content: this.state.content,
-                user: this.props.user
+                username: this.props.username,
             }
         }
         ).then(response => {
-            if (response.data.isRegistered){
-                console.dir("新增文章失敗!");
-                this.setState({registrationErrors: response.data.errorText});
+            if (response.data.isAddArticle){
+                console.dir(response.data.errorText);
+                this.props.history.push("/");
             }
             else if (!response.data.isRegistered){
-                this.setState({registrationErrors: response.data.errorText});
+                console.dir(response.data.errorText);
             }
             console.log("註冊結果!", response);
         }).catch(error => {
@@ -90,7 +90,7 @@ export default class Articlepad extends React.Component {
                   <div className="inner">
                     <nav id="menu">
                       <SideBtnList 
-                        handleLogoutClick={this.handleLogoutClick}
+                        handleLogoutClick={this.props.handleLogoutClick}
                         loggedInStatus={this.props.loggedInStatus}
                        />
                     </nav>

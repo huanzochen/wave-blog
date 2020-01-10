@@ -3,7 +3,6 @@ const _ = require('lodash');
 const article = require('../model/article');
 const member = require('../model/member');
 const crypt = require('../util/crypt');
-const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 
 
@@ -20,6 +19,11 @@ exports.articleList = async (req, res, next) => {
         console.dir("ERR getAllArticle");
         console.dir(err);
     })
+
+    console.dir("req.session");
+    console.dir(req.session);
+    console.dir("req.session.username");
+    console.dir(req.session.username);
 
     res.send(articleList);
 }
@@ -39,19 +43,25 @@ exports.login = async (req, res, next) => {
             });
         }
         else if (crypt.crypt(req.body.user.password) === account[0].pwd){
-
-            console.dir(crypt.crypt(req.body.user.password));
-            console.dir("登入-登入成功");
-            res.cookie('userid', req.body.user.username, { path: '/', signed: true, id:req.body.user.username});
+            res.cookie('userid', req.body.user.username, {
+                maxAge: 86400000,
+                sucure:false, 
+                path: '/', 
+                signed: true, 
+                id:req.body.user.username
+            });
             res.send({
                 isLoggedIn: true,
-                errorText: "登入成功"       
+                errorText: "登入成功",
+                username: req.body.user.username
             });
+            req.session.username = req.body.user.username;
 
-            console.dir(req.session);
-            console.dir("reqqqqqqq");
-            console.dir(req);
+            console.dir("登入-登入成功");
+            console.dir(req.signedCookies);
             console.dir(req.signedCookies.userid);
+            console.dir(req.session.username);
+            console.dir(req.session);
             console.dir(req.sessionID);
 
         }
@@ -71,14 +81,11 @@ exports.logged_in = async (req, res, next) => {
     await member.validateUser(req, res)
     .then(([rows]) => {
         account = rows;
-        //req.session.userid = req.body.user.username;
-        console.dir("cookie");
-        console.dir(req);
         if (JSON.stringify(account) === '[]'){
             res.send({
                 logged_in: false,
                 errorText: "未登入",
-                user:""     
+                username:""     
             });
         }
         else if (account[0].act_name == req.signedCookies.userid ) {
@@ -86,9 +93,13 @@ exports.logged_in = async (req, res, next) => {
             res.send({
                 logged_in: true,
                 errorText: "登入成功",
-                user:req.signedCookies.userid     
+                username: req.signedCookies.userid
             });
         } 
+
+        console.dir(req.signedCookies);
+
+
     });
 }
 
@@ -161,11 +172,15 @@ exports.registration = async (req, res, next) => {
 exports.addArticle = async (req, res, next) => {
     console.dir(req.body);
     await member.postArticle(req, res)
-        .then((err, result, fields) => {
+        .then((err) => {
             console.dir("addArticle");
             console.dir(err);
-            console.dir(result);
-            console.dir(fields);
+            if(err[0].affectedRows == 1) {
+                res.send({
+                    isAddArticle: true,
+                    errorText: "新增文章成功!"         
+                });
+            }
         })
         .catch(err => {
             console.dir("新增-新增文章時出現錯誤!");

@@ -18,7 +18,7 @@ module.exports = class{
     static postArticle(req) {
         let title = req.body.newArticle.title;
         let content = req.body.newArticle.content;
-        console.dir(req.body.newArticle.user);
+        let username = req.body.newArticle.username;
         return db.execute("INSERT INTO `blog`.`article` (`act_name`, `title`, `content`, create_time) VALUES (?, ?, ?, NOW())", [username, title, content]);
     }
 
