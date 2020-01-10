@@ -35,12 +35,10 @@ a, li, p, h1 {
   padding-right: 2em;
   padding-bottom: 1em;
   padding-left: 2em;
-  background-color: salmon;
 }
 .article .article_title {
   padding-right: 3em;
   margin-bottom: 1em;
-  background-color: rgb(99, 98, 189);
 }
 .article .article_title .add_article {
   padding-top: 1em;
@@ -57,15 +55,12 @@ a, li, p, h1 {
   width: 50%;
 }
 .article .article_title .validate .error_code {
-  color: red;
   font-size:1em;
 }
 .article .article_content {
   padding-right: 2em;
-  background-color: rgb(99, 98, 189);
 }
 .article .article_authorandtime {
-  background-color: rgb(221, 195, 45);
   padding-left: 2em;
 }
 
