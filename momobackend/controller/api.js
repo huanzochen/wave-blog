@@ -42,7 +42,7 @@ exports.login = async (req, res, next) => {
 
             console.dir(crypt.crypt(req.body.user.password));
             console.dir("登入-登入成功");
-            res.cookie('userid', req.body.user.username, { path: '/', signed: true});
+            res.cookie('userid', req.body.user.username, { path: '/', signed: true, id:req.body.user.username});
             res.send({
                 isLoggedIn: true,
                 errorText: "登入成功"       
@@ -73,7 +73,7 @@ exports.logged_in = async (req, res, next) => {
         account = rows;
         //req.session.userid = req.body.user.username;
         console.dir("cookie");
-        console.dir(req.cookie);
+        console.dir(req);
         if (JSON.stringify(account) === '[]'){
             res.send({
                 logged_in: false,
@@ -153,9 +153,25 @@ exports.registration = async (req, res, next) => {
         });
     }
     
-    
-    
 
 }
 
+// 新增文章
+
+exports.addArticle = async (req, res, next) => {
+    console.dir(req.body);
+    await member.postArticle(req, res)
+        .then((err, result, fields) => {
+            console.dir("addArticle");
+            console.dir(err);
+            console.dir(result);
+            console.dir(fields);
+        })
+        .catch(err => {
+            console.dir("新增-新增文章時出現錯誤!");
+            console.dir(err);
+        });
+
+    
+}
 

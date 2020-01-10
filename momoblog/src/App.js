@@ -4,6 +4,7 @@ import React from 'react';
 import Homepage from './components/Homepage';
 import RegisterAll from './components/RegisterAll';
 import LoginAll from './components/LoginAll';
+import Articlepad from './components/Articlepad';
 
 
 
@@ -84,6 +85,7 @@ export default class App extends React.Component {
                         handleLogin={this.handleLogin}
                         handleLogout={this.handleLogout}
                         loggedInStatus={this.state.loggedInStatus}
+                        user={this.state.user}
                     />
                   )} />
                 )
@@ -115,11 +117,17 @@ const routes = [
     breadcrumbName: 'Login'
 },
 {
+    path: '/Articlepad',
+    component: Articlepad,
+    exact: false,
+    breadcrumbName: 'Articlepad'
+},
+{
     path: '/',
     component: RouteFallback,
     exact: false,
     breadcrumbName: 'Index'
-}
+},
 ];
 
  
