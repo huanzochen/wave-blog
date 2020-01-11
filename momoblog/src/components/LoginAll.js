@@ -16,7 +16,6 @@ export default class LoginAll extends React.Component {
       this.props.history.push("/");
     }
 
-
     render() {
       return (
         <div className="container-fluid">

@@ -36,6 +36,7 @@ export default class Registration extends Component {
             if (response.data.isRegistered){
                 console.dir("註冊成功!");
                 this.setState({registrationErrors: response.data.errorText});
+                this.props.handleSuccessfulRegister();
             }
             else if (!response.data.isRegistered){
                 this.setState({registrationErrors: response.data.errorText});

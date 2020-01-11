@@ -70,6 +70,7 @@ export default class App extends React.Component {
         });
     }
 
+
     handleLogoutClick() {
         axios.get("http://momoweb.hopto.me:3200/api/logout/submit", { withCredentials: true})
          .then((response) => {
