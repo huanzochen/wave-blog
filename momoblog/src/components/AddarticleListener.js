@@ -9,7 +9,19 @@ export default class AddarticleListener extends React.Component {
         if(this.props.loggedInStatus){
             return (
                 <div>
-                    <Link to="Articlepad"><i className="far fa-plus-square fa-3x"></i></Link>
+                    <Link to={{
+                        pathname: "Articlepad",
+                        state: {
+                            loggedInStatus: "",
+                            id: "",
+                            username: "",
+                            title: "",
+                            content: "",
+                            isEdit:false
+                        }
+                    }}>
+                        <i className="far fa-plus-square fa-3x"></i>
+                    </Link>
                 </div>
             );
         }

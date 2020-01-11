@@ -13,9 +13,11 @@ export default class EditarticleListener extends React.Component {
                         pathname: "Articlepad",
                         state: {
                             loggedInStatus:this.props.loggedInStatus,
+                            id:this.props.id,
                             username:this.props.username,
                             title:this.props.title,
                             content:this.props.content,
+                            isEdit:true
                         }
                     }}>
                         <button className="btn btn-outline-secondary">編輯文章</button>

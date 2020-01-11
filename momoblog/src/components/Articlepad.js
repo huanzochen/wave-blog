@@ -6,11 +6,25 @@ export default class Articlepad extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            title: this.props.location.state.title || "",
-            content: this.props.location.state.content || "",
+            id: "",
+            title: "",
+            content: "",
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
+    }
+
+    componentDidMount() {
+        console.dir("typeof");
+        console.dir((typeof this.props.location.state) === "undefined");
+        if(!(typeof this.props.location.state === "undefined")) {
+            console.dir("通過!");
+            this.setState({
+                id: this.props.location.state.id,
+                title: this.props.location.state.title,
+                content: this.props.location.state.content
+            })
+        }
     }
 
     handleChange(event) {
@@ -23,9 +37,10 @@ export default class Articlepad extends React.Component {
     handleSubmit(event) {
         axios.post('http://momoweb.hopto.me:3200/api/newarticle/submit', {
             newArticle: {
+                id: this.state.id,
+                username: this.props.username,
                 title: this.state.title,
                 content: this.state.content,
-                username: this.props.username,
             }
         }
         ).then(response => {
@@ -36,9 +51,9 @@ export default class Articlepad extends React.Component {
             else if (!response.data.isRegistered){
                 console.dir(response.data.errorText);
             }
-            console.log("註冊結果!", response);
+            console.log("新增/編輯結果!", response);
         }).catch(error => {
-            console.dir("註冊失敗!", error);
+            console.dir("新增/編輯失敗!", error);
         })
         event.preventDefault();
     }

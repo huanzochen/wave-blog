@@ -1,5 +1,6 @@
 const db = require('../util/db');
 const crypt = require('../util/crypt');
+const moment = require('moment');
 
 
 
@@ -16,10 +17,19 @@ module.exports = class{
     }
 
     static postArticle(req) {
+        let id;
+        if(req.body.newArticle.id == ''){
+            id = moment().format('YYYYMMDDHHmmss');
+        }
+        else {
+            id = req.body.newArticle.id;
+        }
+        console.dir("id");
+        console.dir(id);
         let title = req.body.newArticle.title;
         let content = req.body.newArticle.content;
         let username = req.body.newArticle.username;
-        return db.execute("INSERT INTO `blog`.`article` (`act_name`, `title`, `content`, create_time) VALUES (?, ?, ?, NOW())", [username, title, content]);
+        return db.execute("INSERT INTO `blog`.`article` (`id`, `act_name`, `title`, `content`, create_time) VALUES (?, ?, ?, ?, NOW()) ON  DUPLICATE KEY UPDATE title = ?, content = ?, edit_time = NOW()", [id, username, title, content, title, content]);
     }
 
     //READ

@@ -167,7 +167,7 @@ exports.registration = async (req, res, next) => {
 
 }
 
-// 新增文章
+// 新增文章和編輯文章
 
 exports.addArticle = async (req, res, next) => {
     console.dir(req.body);
@@ -179,6 +179,12 @@ exports.addArticle = async (req, res, next) => {
                 res.send({
                     isAddArticle: true,
                     errorText: "新增文章成功!"         
+                });
+            }
+            else if (err[0].affectedRows > 1) {
+                res.send({
+                    isAddArticle: true,
+                    errorText: "編輯文章成功!"         
                 });
             }
         })
