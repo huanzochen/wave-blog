@@ -17,6 +17,9 @@ a, li, p, h1 {
   word-wrap:normal;
 }
 
+h1 {
+  padding-bottom: 0.1em;
+}
 
 .title {
   margin-left: 0.7em;

@@ -22,8 +22,8 @@ exports.articleList = async (req, res, next) => {
 
     console.dir("req.session");
     console.dir(req.session);
-    console.dir("req.session.username");
-    console.dir(req.session.username);
+    console.dir("req.signedCookies");
+    console.dir(req.signedCookies.userid);
 
     res.send(articleList);
 }
@@ -110,6 +110,7 @@ exports.logout = async (req, res, next) => {
         console.dir(req);
         console.dir(req.signedCookies.userid);
         console.dir(req.sessionID);
+        res.clearCookie('userid',req.signedCookies.userid);
         req.session.destroy;
         res.send("200");
     });
