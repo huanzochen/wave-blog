@@ -4,9 +4,12 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "dev": "nodemon ./bin/www"
+    "dev": "nodemon ./bin/www --exec \"mocha \"",
+    "test": "set NODE_ENV=test PORT=3200 && mocha --timeout 10000 'test/**/*.test.js' --exit",
+    "cov": "set NODE_ENV=test PORT=3200 && nyc mocha --timeout 10000 'test/**/*.test.js' --exit"
   },
   "dependencies": {
+    "chai": "^4.2.0",
     "cookie-parser": "^1.4.4",
     "cors": "^2.8.5",
     "crypto": "^1.0.1",
@@ -21,10 +24,15 @@
     "moment": "^2.24.0",
     "morgan": "~1.9.1",
     "mysql2": "^2.1.0",
-    "nodemon": "^2.0.2"
+    "nodemon": "^2.0.2",
+    "power-assert": "^1.6.1",
+    "supertest": "^4.0.2"
   },
   "devDependencies": {
+    "i": "^0.3.6",
     "mocha": "^7.0.0",
+    "npm": "^6.13.6",
+    "nyc": "^15.0.0",
     "should": "^13.2.3"
   }
 }

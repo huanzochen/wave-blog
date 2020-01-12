@@ -20,11 +20,15 @@ exports.articleList = async (req, res, next) => {
         console.dir(err);
     })
 
+    /*
     console.dir("req.session");
     console.dir(req.session);
     console.dir("req.signedCookies");
     console.dir(req.signedCookies.userid);
-
+    */
+    //console.dir("res");
+    //console.dir(res);
+    
     res.send(articleList);
 }
 
@@ -128,14 +132,14 @@ exports.registration = async (req, res, next) => {
                     console.dir("註冊-有新用戶註冊成功!");
                     res.send({
                         isRegistered: true,
-                        errorText: "註冊成功!"         
+                        errorText: "註冊成功"         
                     });
                 }
                 else{
                     console.dir("註冊-有新用戶註冊失敗!");
                     res.send({
                         isRegistered: false,
-                        errorText: "註冊失敗!"         
+                        errorText: "註冊失敗"         
                     });
                 }
             })
@@ -179,13 +183,13 @@ exports.addArticle = async (req, res, next) => {
             if(err[0].affectedRows == 1) {
                 res.send({
                     isAddArticle: true,
-                    errorText: "新增文章成功!"         
+                    errorText: "新增文章成功"         
                 });
             }
             else if (err[0].affectedRows > 1) {
                 res.send({
                     isAddArticle: true,
-                    errorText: "編輯文章成功!"         
+                    errorText: "編輯文章成功"         
                 });
             }
         })
@@ -203,13 +207,13 @@ exports.deleteArticle = async (req, res, next) => {
         if(err[0].affectedRows == 1) {
             res.send({
                 isDeleteArticle: true,
-                errorText: "刪除文章成功!"         
+                errorText: "刪除文章成功"         
             });
         }
         else {
             res.send({
                 isDeleteArticle: false,
-                errorText: "刪除文章錯誤!"         
+                errorText: "刪除文章錯誤"         
             });
         }
     })
