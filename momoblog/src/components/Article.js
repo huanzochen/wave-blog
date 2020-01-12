@@ -40,7 +40,7 @@ export default class Article extends React.Component {
                     </Link>
                     <div className="row">
                         <div className="article_authorandtime col-3">
-                        <p>{articles.act_name}</p> 
+                        <p>作者 {articles.act_name}</p> 
                         </div>
                         <div className="article_authorandtime col-4">
                         <p>{moment(articles.create_time).format('YYYY年MM月DD日')} </p>

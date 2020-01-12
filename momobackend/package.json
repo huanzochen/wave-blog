@@ -22,5 +22,9 @@
     "morgan": "~1.9.1",
     "mysql2": "^2.1.0",
     "nodemon": "^2.0.2"
+  },
+  "devDependencies": {
+    "mocha": "^7.0.0",
+    "should": "^13.2.3"
   }
 }
