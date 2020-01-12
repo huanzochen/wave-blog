@@ -44,7 +44,7 @@ export default class Homepage extends React.Component {
       return (
         <div className="container-fluid">
           <div className="row">
-            <div id="main" className="col-9">
+            <div id="main" className="col-md-9">
               <Link to="Homepage"><h1 className="title display-3"><span className="badge badge-secondary">茉茉部落格</span></h1></Link>
               <div className="inner">
                 { !(this.state.isArticleDetail) && 
@@ -75,7 +75,7 @@ export default class Homepage extends React.Component {
                 }
               </div>
             </div>
-            <div id="sidebar" className="col-3">
+            <div id="sidebar" className="col-md-3">
               <div className="inner">
                 <nav id="menu">
                   <SideBtnList 

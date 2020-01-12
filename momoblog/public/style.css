@@ -35,7 +35,6 @@ h1 {
   padding-top: 0.5em;
   padding-bottom: 0.5em;
   padding-left: 2em;
-  background-color: salmon;
 }
 
 .horizonal {
@@ -56,12 +55,11 @@ h1 {
   padding-right: 2em;
   padding-bottom: 1em;
   padding-left: 2em;
-  background-color: salmon;
 }
 .article .article_title {
   padding-right: 3em;
   margin-bottom: 1em;
-  background-color: rgb(99, 98, 189);
+  background-color: rgb(220, 220, 226);
 }
 .article .article_title .add_article {
   padding-top: 1em;
@@ -83,10 +81,9 @@ h1 {
 }
 .article .article_content {
   padding-right: 2em;
-  background-color: rgb(99, 98, 189);
+  background-color: rgb(220, 220, 226);
 }
 .article .article_authorandtime {
-  background-color: rgb(221, 195, 45);
   padding-left: 2em;
 }
 

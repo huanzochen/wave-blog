@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "dev": "nodemon ./bin/www --exec \"mocha \"",
+    "dev": "set NODE_ENV=test PORT=3200 && mocha --timeout 10000 'test/**/*.test.js' --exit && nodemon ./bin/www",
     "test": "set NODE_ENV=test PORT=3200 && mocha --timeout 10000 'test/**/*.test.js' --exit",
     "cov": "set NODE_ENV=test PORT=3200 && nyc mocha --timeout 10000 'test/**/*.test.js' --exit"
   },
