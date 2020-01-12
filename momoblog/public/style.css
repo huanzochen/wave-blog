@@ -38,6 +38,19 @@ h1 {
   background-color: salmon;
 }
 
+.horizonal {
+  flex-direction: row;
+}
+
+.item0 {
+  order: 0;
+  padding-right: 0.5em;
+}
+
+.item1 {
+  order: 1;
+}
+
 .article {
   padding-top: 1em;
   padding-right: 2em;

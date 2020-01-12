@@ -32,6 +32,14 @@ module.exports = class{
         return db.execute("INSERT INTO `blog`.`article` (`id`, `act_name`, `title`, `content`, create_time) VALUES (?, ?, ?, ?, NOW()) ON  DUPLICATE KEY UPDATE title = ?, content = ?, edit_time = NOW()", [id, username, title, content, title, content]);
     }
 
+    static deleteArticle(req) {
+        let id = req.body.user.id;
+        let username = req.body.user.username;
+        let title = req.body.user.title;
+        let content = req.body.user.content;
+        return db.execute("DELETE FROM `blog`.`article` WHERE id = ? AND act_name = ? AND title = ? AND content = ? ", [id, username, title, content]);
+    }
+
     //READ
     static queryUser(req) {
         let username = req.body.user.username;

@@ -56,6 +56,7 @@ export default class Homepage extends React.Component {
                     <Article
                       loggedInStatus={this.props.loggedInStatus}
                       username={this.props.username}
+                      history={this.props.history}
                     />
                   </div>
                 }
@@ -69,6 +70,7 @@ export default class Homepage extends React.Component {
                       content={this.state.content}
                       article_username={this.state.article_username}
                       isArticleDetail={this.state.isArticleDetail}
+                      history={this.props.history}
                   />
                 }
               </div>

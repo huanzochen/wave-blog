@@ -13,7 +13,7 @@ export default class ArticleDetail extends React.Component {
                         <div className="article_authorandtime col-3">
                         <p>{this.props.article_username}</p> 
                         </div>
-                        <div className="article_authorandtime col-6">
+                        <div className="article_authorandtime col-4">
                         <p>{moment(this.props.create_time).format('YYYY年MM月DD日')} </p>
                         </div>
                         {
@@ -24,6 +24,7 @@ export default class ArticleDetail extends React.Component {
                                 username={this.props.username}
                                 title={this.props.title}
                                 content={this.props.content}
+                                history={this.props.history}
                             />
                         }
                     </div>

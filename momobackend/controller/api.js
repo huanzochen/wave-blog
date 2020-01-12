@@ -193,7 +193,29 @@ exports.addArticle = async (req, res, next) => {
             console.dir("新增-新增文章時出現錯誤!");
             console.dir(err);
         });
+}
 
-    
+exports.deleteArticle = async (req, res, next) => {
+    await member.deleteArticle(req, res)
+    .then((err) => {
+        console.dir("deleteArticle");
+        console.dir(err);
+        if(err[0].affectedRows == 1) {
+            res.send({
+                isDeleteArticle: true,
+                errorText: "刪除文章成功!"         
+            });
+        }
+        else {
+            res.send({
+                isDeleteArticle: false,
+                errorText: "刪除文章錯誤!"         
+            });
+        }
+    })
+    .catch(err => {
+        console.dir("刪除-刪除文章時出現錯誤!");
+        console.dir(err);
+    });
 }
 

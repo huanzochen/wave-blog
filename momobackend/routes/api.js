@@ -18,6 +18,7 @@ router.post('/api/login/submit', api.login);
 router.get('/api/logout/submit', api.logout);
 
 router.post('/api/newarticle/submit', api.addArticle);
+router.post('/api/deletearticle/submit', api.deleteArticle);
 
 
 module.exports = router;
