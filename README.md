@@ -22,11 +22,11 @@ npm run dev // 開發模式測試
 ```
 
 ## About webhookURL
-為了避免CORS問題, 
-需要在兩個資料夾內設定相對應的Hook, 
-以通過瀏覽器安全性檢查功能(CORS), 
-momoblog/util/config 
-momobackend/util/config 
+為了避免CORS問題, <br />
+需要在兩個資料夾內設定相對應的Hook, <br />
+以通過瀏覽器安全性檢查功能(CORS), <br />
+momoblog/util/config <br />
+momobackend/util/config <br />
 ```
 exports = module.exports = {
     url: 你的URL,
