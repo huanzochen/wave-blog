@@ -2,7 +2,7 @@ import React from 'react';
 import moment from 'moment';
 import EditarticleListener from './EditarticleListener';
 import {Link} from 'react-router-dom';
-
+import webhookURL from '../util/config/webhookURL';
 
 
 export default class Article extends React.Component {
@@ -14,7 +14,7 @@ export default class Article extends React.Component {
     }
 
     async componentDidMount() {
-      let b = await fetch('http://momoweb.hopto.me:3200/api/articlelist');
+      let b = await fetch( webhookURL.url + '/api/articlelist');
       let articles = await b.json();
       this.setState({articles});
     }
