@@ -31,7 +31,12 @@ h1 {
   color: black;
 }
 
-
+.new_button{
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  padding-left: 2em;
+  background-color: salmon;
+}
 
 .article {
   padding-top: 1em;
