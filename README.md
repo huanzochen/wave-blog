@@ -1,5 +1,5 @@
 # React-momoblog
-一個基於React,nodejs 所寫的部落格
+一個基於 React, nodejs 所寫的部落格
 web:
 momoblog/
 api:
