@@ -15,6 +15,7 @@ export default class Articlepad extends React.Component {
     }
 
     componentDidMount() {
+        window.scrollTo(0, 0);
         console.dir("typeof");
         console.dir((typeof this.props.location.state) === "undefined");
         if(!(typeof this.props.location.state === "undefined")) {

@@ -1,6 +1,8 @@
 import React from 'react';
 import moment from 'moment';
 import EditarticleListener from './EditarticleListener';
+import {Link} from 'react-router-dom';
+
 
 
 export default class Article extends React.Component {
@@ -23,7 +25,19 @@ export default class Article extends React.Component {
             return (
                 <div className="article" key={index}>
                     <div className="article_title">
-                    <h1>{articles.title}</h1>
+                    <Link className="noblue" to={{
+                        pathname: "/Homepage",
+                        state: {
+                            id:articles.id,
+                            title:articles.title,
+                            content:articles.content,
+                            create_time:articles.create_time,
+                            article_username:articles.act_name,
+                            isArticleDetail:true
+                        }
+                    }}>
+                        <h1>{articles.title}</h1>
+                    </Link>
                     <div className="row">
                         <div className="article_authorandtime col-3">
                         <p>{articles.act_name}</p> 

@@ -5,6 +5,7 @@ import Homepage from './components/Homepage';
 import RegisterAll from './components/RegisterAll';
 import LoginAll from './components/LoginAll';
 import Articlepad from './components/Articlepad';
+import ArticleDetail from './components/ArticleDetail';
 
 
 
@@ -136,11 +137,17 @@ const routes = [
     breadcrumbName: 'Articlepad'
 },
 {
+  path: '/ArticleDetail',
+  component: ArticleDetail,
+  exact: false,
+  breadcrumbName: 'Index'
+},
+{
     path: '/',
     component: RouteFallback,
     exact: false,
     breadcrumbName: 'Index'
-},
+}
 ];
 
  

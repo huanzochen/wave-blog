@@ -20,7 +20,7 @@ export default class AddarticleListener extends React.Component {
                             isEdit:false
                         }
                     }}>
-                    <div className="new_button"><button class="btn btn-outline-secondary">新增文章</button></div>
+                    <div className="new_button"><button className="btn btn-outline-secondary">新增文章</button></div>
                     </Link>
                 </div>
             );
