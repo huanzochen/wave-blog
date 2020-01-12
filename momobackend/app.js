@@ -8,6 +8,7 @@ var expressSession = require('express-session');
 
 var apiRouter = require('./routes/api');
 var usersRouter = require('./routes/users');
+var webhookURL = require('./util/config/webhookURL');
 
 var app = express();
 
@@ -34,7 +35,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "http://momoweb.hopto.me:3000"); // update to match the domain you will make the request from
+  res.header("Access-Control-Allow-Origin", webhookURL.url ); // update to match the domain you will make the request from
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, PATCH, OPTIONS");
   res.header("Access-Control-Allow-Credentials", true);

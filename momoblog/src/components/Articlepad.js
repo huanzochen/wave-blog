@@ -1,6 +1,7 @@
 import React from 'react';
 import SideBtnList from './SideBtnList';
 import axios from 'axios';
+import webhookURL from '../util/config/webhookURL';
 
 export default class Articlepad extends React.Component {
     constructor(props) {
@@ -36,7 +37,7 @@ export default class Articlepad extends React.Component {
     }
 
     handleSubmit(event) {
-        axios.post('http://momoweb.hopto.me:3200/api/newarticle/submit', {
+        axios.post( webhookURL.url + '/api/newarticle/submit', {
             newArticle: {
                 id: this.state.id,
                 username: this.props.username,
