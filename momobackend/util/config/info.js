@@ -1,6 +1,6 @@
 exports = module.exports = {
-    host: 'momoweb.hopto.me',
-    user: 'api',
+    host: 'oracle.taitra.punwave.com',
+    user: 'root',
     database: 'blog',
-    password: 'CHG_challenge112'
+    password: 'rTxQ)9Sb#Tb-'
 }
