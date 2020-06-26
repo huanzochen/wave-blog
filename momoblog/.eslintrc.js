@@ -2,7 +2,7 @@ module.exports = {
     "extends": "react-app",
     "rules": {
         // enable additional rules
-        "indent": ["error", 4],
+        "indent": ["error", 2],
         "linebreak-style": ["error", "unix"],
         "quotes": ["error", "double"],
         "semi": ["error", "always"],
