@@ -47,14 +47,14 @@ export default class Article extends React.Component {
                 </div>
                 {
                   this.props.loggedInStatus && (this.props.username === articles.act_name) &&
-                            <EditarticleListener
-                              loggedInStatus={this.props.loggedInStatus}
-                              id={articles.id}
-                              username={this.props.username}
-                              title={articles.title}
-                              content={articles.content}
-                              history={this.props.history}
-                            />
+                    <EditarticleListener
+                      loggedInStatus={this.props.loggedInStatus}
+                      id={articles.id}
+                      username={this.props.username}
+                      title={articles.title}
+                      content={articles.content}
+                      history={this.props.history}
+                    />
                 }
               </div>
             </div>
