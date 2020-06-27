@@ -1,6 +1,9 @@
+require('dotenv').config()
+
+
 exports = module.exports = {
-    host: 'oracle.taitra.punwave.com',
-    user: 'root',
-    database: 'blog',
-    password: 'rTxQ)9Sb#Tb-'
+    host: process.env.MYSQL_HOST,
+    user: process.env.MYSQL_USER,
+    database: process.env.MYSQL_DATABASE,
+    password: process.env.MYSQL_PASSWORD
 }

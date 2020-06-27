@@ -1,4 +1,6 @@
+require('dotenv').config()
+
 exports = module.exports = {
-    url: 'http://localhost:3000',
+    url: process.env.WEB_APP_URL
 }
 /**  webhookURL連結 此url指向前端 */
