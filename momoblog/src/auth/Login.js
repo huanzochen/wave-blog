@@ -10,8 +10,19 @@ export default class Login extends React.Component {
             password: "",
             loginErrors: ""
         }
+        this.googleLogin = this.googleLogin.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
+    }
+
+    googleLogin(event) {
+        console.log('hi', this)
+        window.location.href = `https://accounts.google.com/o/oauth2/v2/auth?
+client_id=${webhookURL.CLIENT_ID}&
+redirect_uri=${webhookURL.WEB_URL}/oauth/google/callback&
+response_type=code&
+scope=https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile
+`
     }
 
     handleChange(event) {
@@ -55,6 +66,16 @@ export default class Login extends React.Component {
         return (
             <div className="article">
                 <div className="article_title">
+                    <div className="row justify-content-between validate">
+                        <div className="col-5">
+                            <button className="btn btn-light"
+                                onClick={this.googleLogin}
+                            > Google OAuth </button>
+                        </div>
+                        <div className="col-7">
+                            <p className="error_code">{this.state.loginErrors}</p>
+                        </div>
+                    </div>
                     <form onSubmit={this.handleSubmit} >
                         <div className="row validate">
                             <p>帳號: </p>
