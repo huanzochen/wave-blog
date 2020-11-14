@@ -8,7 +8,7 @@ const cookieParser = require('cookie-parser');
 
 /* READ *******************************************/
 
-exports.articleList = async (req, res, next) => {
+const articleList = async (req, res, next) => {
     let articleList;
 
     await article.getAllArticle()
@@ -20,20 +20,19 @@ exports.articleList = async (req, res, next) => {
         console.dir(err);
     })
 
-    
-    
+    /*
     console.dir("req.session");
     console.dir(req.session);
     console.dir("req.signedCookies");
     console.dir(req.signedCookies.userid);
-    
+    */
     //console.dir("res");
     //console.dir(res);
     
     res.send(articleList);
 }
 
-exports.login = async (req, res, next) => {
+const login = async (req, res, next) => {
     let account;
     console.dir(req.body);
     await member.queryUser(req, res)
@@ -81,7 +80,7 @@ exports.login = async (req, res, next) => {
 
 }
 
-exports.logged_in = async (req, res, next) => {
+const logged_in = async (req, res, next) => {
     let account;
     await member.validateUser(req, res)
     .then(([rows]) => {
@@ -108,7 +107,7 @@ exports.logged_in = async (req, res, next) => {
     });
 }
 
-exports.logout = async (req, res, next) => {
+const logout = async (req, res, next) => {
     await article.getAllArticle()
     .then(([rows]) => {
         console.dir("logout");
@@ -123,7 +122,7 @@ exports.logout = async (req, res, next) => {
 
 
 /* WRITE ***************************************/
-exports.registration = async (req, res, next) => {
+const registration = async (req, res, next) => {
     //console.dir(req.body);
     console.dir(req.body);
     if(req.body.user.password == req.body.user.password_confirmation){
@@ -175,7 +174,7 @@ exports.registration = async (req, res, next) => {
 
 // 新增文章和編輯文章
 
-exports.addArticle = async (req, res, next) => {
+const addArticle = async (req, res, next) => {
     console.dir(req.body);
     await member.postArticle(req, res)
         .then((err) => {
@@ -200,7 +199,7 @@ exports.addArticle = async (req, res, next) => {
         });
 }
 
-exports.deleteArticle = async (req, res, next) => {
+const deleteArticle = async (req, res, next) => {
     await member.deleteArticle(req, res)
     .then((err) => {
         console.dir("deleteArticle");
@@ -224,3 +223,10 @@ exports.deleteArticle = async (req, res, next) => {
     });
 }
 
+exports.articleList = articleList
+exports.login = login
+exports.logged_in = logged_in
+exports.logout = logout
+exports.registration = registration
+exports.addArticle = addArticle
+exports.deleteArticle = deleteArticle
