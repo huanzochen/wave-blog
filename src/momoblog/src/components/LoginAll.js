@@ -44,8 +44,8 @@ export default class LoginAll extends React.Component {
     googleOAuthExchange() {
       console.log('googleOAuthExchange')
       axios.post( 'https://oauth2.googleapis.com/token', {
-        client_id: webhookURL.CLIENT_ID,
-        client_secret: webhookURL.CLIENT_SECRET,
+        client_id: process.env.REACT_APP_CLIENT_ID,
+        client_secret: process.env.REACT_APP_CLIENT_SECRET,
         code: this.state.googleOAuth.code,
         grant_type:'authorization_code',
         redirect_uri:`${process.env.REACT_APP_API_URL}/oauth/google/callback/exchange`
