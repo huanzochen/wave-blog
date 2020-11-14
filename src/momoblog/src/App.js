@@ -132,6 +132,18 @@ const routes = [
     breadcrumbName: 'Login'
 },
 {
+  path: '/oauth/google/callback',
+  component: LoginAll,
+  exact: true,
+  breadcrumbName: 'Login'
+},
+{
+  path: '/oauth/google/callback/exchange',
+  component: LoginAll,
+  exact: true,
+  breadcrumbName: 'Login'
+},
+{
     path: '/Articlepad',
     component: Articlepad,
     exact: true,
