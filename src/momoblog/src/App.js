@@ -6,7 +6,6 @@ import RegisterAll from './components/RegisterAll';
 import LoginAll from './components/LoginAll';
 import Articlepad from './components/Articlepad';
 import ArticleDetail from './components/ArticleDetail';
-import webhookURL from './util/config/webhookURL';
 
 
 
@@ -31,7 +30,7 @@ export default class App extends React.Component {
     }
     
     checkLoginStatus() {
-      axios.get( webhookURL.url + '/api/logged_in', { withCredentials:true})
+      axios.get( process.env.REACT_APP_API_URL + '/api/logged_in', { withCredentials:true})
       .then(response => {
           if (response.data.logged_in && this.state.loggedInStatus === "NOT_LOGGED_IN"){
             this.setState({
@@ -74,7 +73,7 @@ export default class App extends React.Component {
 
 
     handleLogoutClick() {
-        axios.get( webhookURL.url + '/api/logout/submit', { withCredentials: true})
+        axios.get( process.env.REACT_APP_API_URL + '/api/logout/submit', { withCredentials: true})
          .then((response) => {
             this.handleLogout();
          })

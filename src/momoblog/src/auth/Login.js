@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import webhookURL from '../util/config/webhookURL';
 
 export default class Login extends React.Component {
     constructor(props) {
@@ -23,7 +22,7 @@ export default class Login extends React.Component {
 
     handleSubmit(event) {
         const {username, password} = this.state;
-        axios.post( webhookURL.url + '/api/login/submit', {
+        axios.post( process.env.REACT_APP_API_URL + '/api/login/submit', {
             user: {
                 username: username,
                 password: password

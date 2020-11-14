@@ -20,12 +20,13 @@ exports.articleList = async (req, res, next) => {
         console.dir(err);
     })
 
-    /*
+    
+    
     console.dir("req.session");
     console.dir(req.session);
     console.dir("req.signedCookies");
     console.dir(req.signedCookies.userid);
-    */
+    
     //console.dir("res");
     //console.dir(res);
     
