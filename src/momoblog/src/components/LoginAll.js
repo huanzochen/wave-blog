@@ -2,7 +2,6 @@ import React from 'react';
 import axios from 'axios';
 import Login from '../auth/Login';
 import SideBtnList from './SideBtnList';
-import webhookURL from '../util/config/webhookURL';
 
 
 export default class LoginAll extends React.Component {
@@ -49,7 +48,7 @@ export default class LoginAll extends React.Component {
         client_secret: webhookURL.CLIENT_SECRET,
         code: this.state.googleOAuth.code,
         grant_type:'authorization_code',
-        redirect_uri:`${webhookURL.WEB_URL}/oauth/google/callback/exchange`
+        redirect_uri:`${process.env.REACT_APP_API_URL}/oauth/google/callback/exchange`
       })
       .then(response => {
         console.log('response')

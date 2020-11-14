@@ -1,3 +1,4 @@
+require('dotenv').config()
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -8,7 +9,6 @@ var expressSession = require('express-session');
 
 var apiRouter = require('./routes/api');
 var usersRouter = require('./routes/users');
-var webhookURL = require('./util/config/webhookURL');
 
 var app = express();
 
@@ -35,7 +35,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", webhookURL.url ); // update to match the domain you will make the request from
+  res.header("Access-Control-Allow-Origin", process.env.APP_URL ); // update to match the domain you will make the request from
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, PATCH, OPTIONS");
   res.header("Access-Control-Allow-Credentials", true);

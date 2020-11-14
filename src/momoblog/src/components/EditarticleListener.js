@@ -1,7 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
-import webhookURL from '../util/config/webhookURL';
 
 
 export default class EditarticleListener extends React.Component {
@@ -15,7 +14,7 @@ export default class EditarticleListener extends React.Component {
     
     handleDeleteArticle() {
         const {id, username, title, content} = this.props;
-        axios.post( webhookURL.url + '/api/deletearticle/submit', {
+        axios.post( process.env.REACT_APP_API_URL + '/api/deletearticle/submit', {
             user: {
                 id:id,
                 username:username,
