@@ -1,12 +1,12 @@
-import React from 'react';
-import axios from 'axios';
-import Login from '../auth/Login';
-import SideBtnList from './SideBtnList';
+import React from 'react'
+import axios from 'axios'
+import Login from '../auth/Login'
+import SideBtnList from './SideBtnList'
 
 
 export default class LoginAll extends React.Component {
     constructor(props) {
-      super(props);
+      super(props)
       this.state = {
         googleOAuth:{
           authuser:'',
@@ -14,26 +14,26 @@ export default class LoginAll extends React.Component {
           prompt:'',
           scope:''
         }
-      };
-
-
+      }
       this.googleOAuthCheck = this.googleOAuthCheck.bind(this)
-      this.handleSuccessfulAuth = this.handleSuccessfulAuth.bind(this);
-      this.googleOAuthExchange = this.googleOAuthExchange.bind(this);
+      this.handleSuccessfulAuth = this.handleSuccessfulAuth.bind(this)
+      this.googleOAuthExchange = this.googleOAuthExchange.bind(this)
     }
 
     componentDidMount() {
-      if (this.props.location.search !== "" && this.props.location.pathname === '/oauth/google/callback') {
-        this.googleOAuthCheck();
+      if (this.props.location.search !== '' && this.props.location.pathname === '/oauth/google/callback') {
+        this.googleOAuthCheck()
       }
-      else if (this.props.location.search !== "" && this.props.location.pathname === '/oauth/google/callback/exchange'){
+      else if (this.props.location.search !== '' && this.props.location.pathname === '/oauth/google/callback/exchange') {
+        console.log('callback/exchange')
       }
+      const sss = ['s', 'sad', 'asd']
     }
 
     googleOAuthCheck() {
       const googleOAuth = {}
       console.log('googleOAuthCheck')
-      if(this.props.location.search !== ""){
+      if (this.props.location.search !== '') {
         this.props.location.search.split('?')[1].split('&').map((param) => {
           googleOAuth[param.split('=')[0]] = param.split('=')[1]
         })
@@ -42,7 +42,7 @@ export default class LoginAll extends React.Component {
     }
 
     googleOAuthExchange() {
-      console.log('googleOAuthExchange')
+      console.log('googleOAuthExchange do the token refresh')
       axios.post( 'https://oauth2.googleapis.com/token', {
         client_id: process.env.REACT_APP_CLIENT_ID,
         client_secret: process.env.REACT_APP_CLIENT_SECRET,
@@ -55,14 +55,14 @@ export default class LoginAll extends React.Component {
         console.log(response)
       })
       .catch(error => {
-          console.dir("登入失敗!");
+          console.dir('googleOAuthExchange 出現錯誤!')
           console.log(error)
       })
     }
 
     handleSuccessfulAuth(data) {
-      this.props.handleLogin(data);
-      this.props.history.push("/");
+      this.props.handleLogin(data)
+      this.props.history.push('/')
     }
 
     render() {
@@ -84,6 +84,6 @@ export default class LoginAll extends React.Component {
             </div>
           </div>
         </div>
-      );
+      )
     }
 }

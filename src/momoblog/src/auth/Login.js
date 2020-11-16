@@ -1,17 +1,17 @@
-import React from 'react';
-import axios from 'axios';
+import React from 'react'
+import axios from 'axios'
 
 export default class Login extends React.Component {
     constructor(props) {
-        super(props);
+        super(props)
         this.state = {
-            username: "",
-            password: "",
-            loginErrors: ""
+            username: '',
+            password: '',
+            loginErrors: ''
         }
         this.googleLogin = this.googleLogin.bind(this)
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleChange = this.handleChange.bind(this)
     }
 
     googleLogin(event) {
@@ -20,6 +20,7 @@ export default class Login extends React.Component {
 client_id=${process.env.REACT_APP_CLIENT_ID}&
 redirect_uri=${process.env.REACT_APP_APP_URL}/oauth/google/callback&
 response_type=code&
+access_type=offline&
 scope=https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile
 `
     }
@@ -27,12 +28,12 @@ scope=https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/
     handleChange(event) {
         this.setState({
             [event.target.name]: event.target.value
-        });
-        console.log("內容有變動");
+        })
+        console.log('內容有變動')
     }
 
     handleSubmit(event) {
-        const {username, password} = this.state;
+        const {username, password} = this.state
         axios.post( process.env.REACT_APP_API_URL + '/api/login/submit', {
             user: {
                 username: username,
@@ -41,24 +42,23 @@ scope=https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/
         },
         {
             withCredentials: true
-        },
-        )
+        })
         .then(response => {
-            if (response.data.isLoggedIn){
-                console.dir("登入成功!");
+            if (response.data.isLoggedIn) {
+                console.dir('登入成功!')
                 //localStorage.setItem('usertoken', response.data.token);
-                this.setState({loginErrors: response.data.errorText});
-                console.log("登入結果!", response);
-                this.props.handleSuccessfulAuth(response.data);
+                this.setState({loginErrors: response.data.errorText})
+                console.log('登入結果!', response)
+                this.props.handleSuccessfulAuth(response.data)
             }
-            else if (!response.data.isLoggedIn){
-                this.setState({loginErrors:response.data.errorText});
+            else if (!response.data.isLoggedIn) {
+                this.setState({loginErrors:response.data.errorText})
             }
         })
         .catch(error => {
-            console.dir("登入失敗!", error);
+            console.dir('登入失敗!', error)
         })
-        event.preventDefault();
+        event.preventDefault()
     }
     
     render() {
@@ -113,6 +113,6 @@ scope=https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/
                     </form>
                 </div>
             </div>
-        );
+        )
     }
 }
