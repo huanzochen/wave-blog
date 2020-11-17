@@ -35,7 +35,7 @@ export default class LoginAll extends React.Component {
       console.log('googleOAuthCheck')
       if (this.props.location.search !== '') {
         this.props.location.search.split('?')[1].split('&').map((param) => {
-          googleOAuth[param.split('=')[0]] = param.split('=')[1]
+          googleOAuth[param.split('=')[0]] = decodeURIComponent(param.split('=')[1])
         })
         this.setState({googleOAuth}, this.googleOAuthExchange)
       }
@@ -43,12 +43,19 @@ export default class LoginAll extends React.Component {
 
     googleOAuthExchange() {
       console.log('googleOAuthExchange do the token refresh')
+      console.log('this.state.googleOAuth.code')
+      console.log(this.state.googleOAuth.code)
       axios.post( 'https://oauth2.googleapis.com/token', {
         client_id: process.env.REACT_APP_CLIENT_ID,
         client_secret: process.env.REACT_APP_CLIENT_SECRET,
         code: this.state.googleOAuth.code,
-        grant_type:'authorization_code',
-        redirect_uri:`${process.env.REACT_APP_API_URL}/oauth/google/callback/exchange`
+        grant_type: 'authorization_code',
+        redirect_uri: 'http://fbapis.com:3000/oauth/google/callback/exchange'   //`${process.env.REACT_APP_APP_URL}/oauth/google/callback/exchange`
+      },
+      {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
       })
       .then(response => {
         console.log('response')
