@@ -1,0 +1,4 @@
+## How to restore data in mysql?
+```
+sudo docker exec -i mysql sh -c 'exec mysql -u"${MYSQL_USER}" -p"${MYSQL_PASSWORD}" blog' < ../../documents/mysqldump/sqldump.sql
+```
