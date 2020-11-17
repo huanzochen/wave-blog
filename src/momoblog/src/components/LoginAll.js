@@ -1,7 +1,10 @@
 import React from 'react'
 import axios from 'axios'
+import qs from 'querystring'
+
 import Login from '../auth/Login'
 import SideBtnList from './SideBtnList'
+
 
 
 export default class LoginAll extends React.Component {
@@ -42,21 +45,19 @@ export default class LoginAll extends React.Component {
     }
 
     googleOAuthExchange() {
-      console.log('googleOAuthExchange do the token refresh')
-      console.log('this.state.googleOAuth')
-      console.log(this.state.googleOAuth)
-      axios.post( 'https://oauth2.googleapis.com/token', {
+      const requestBody = {
         client_id: process.env.REACT_APP_CLIENT_ID,
         client_secret: process.env.REACT_APP_CLIENT_SECRET,
         code: this.state.googleOAuth.code,
-        grant_type: 'authorization_code',
-        redirect_uri: `${process.env.REACT_APP_APP_URL}/oauth/google/callback/exchange`   //${process.env.REACT_APP_APP_URL}/oauth/google/callback/exchange`
-      },
-      {
+        redirect_uri: `${process.env.REACT_APP_APP_URL}/oauth/google/callback`,
+        grant_type: 'authorization_code'
+      }
+      const config = {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
         }
-      })
+      }
+      axios.post( 'https://oauth2.googleapis.com/token', qs.stringify(requestBody), config)
       .then(response => {
         console.log('response')
         console.log(response)
