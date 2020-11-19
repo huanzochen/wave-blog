@@ -21,7 +21,8 @@ client_id=${process.env.REACT_APP_CLIENT_ID}&
 redirect_uri=${process.env.REACT_APP_APP_URL}/oauth/google/callback&
 response_type=code&
 access_type=offline&
-scope=https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile
+scope=https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile&
+prompt=consent
 `
     }
 

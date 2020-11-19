@@ -61,6 +61,8 @@ export default class LoginAll extends React.Component {
       .then(response => {
         console.log('response')
         console.log(response)
+        console.log('response.data')
+        console.log(response.data)
       })
       .catch(error => {
           console.dir('googleOAuthExchange 出現錯誤!')
