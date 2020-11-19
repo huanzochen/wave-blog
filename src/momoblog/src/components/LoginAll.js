@@ -46,8 +46,8 @@ export default class LoginAll extends React.Component {
 
     googleOAuthExchange() {
       const requestBody = {
-        client_id: process.env.REACT_APP_CLIENT_ID,
-        client_secret: process.env.REACT_APP_CLIENT_SECRET,
+        client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
+        client_secret: process.env.REACT_APP_GOOGLE_CLIENT_SECRET,
         code: this.state.googleOAuth.code,
         redirect_uri: `${process.env.REACT_APP_APP_URL}/oauth/google/callback`,
         grant_type: 'authorization_code'

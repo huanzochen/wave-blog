@@ -10,6 +10,7 @@ export default class Login extends React.Component {
             loginErrors: ''
         }
         this.googleLogin = this.googleLogin.bind(this)
+        this.yahooLogin = this.yahooLogin.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleChange = this.handleChange.bind(this)
     }
@@ -17,12 +18,23 @@ export default class Login extends React.Component {
     googleLogin(event) {
         console.log('hi', this)
         window.location.href = `https://accounts.google.com/o/oauth2/v2/auth?
-client_id=${process.env.REACT_APP_CLIENT_ID}&
+client_id=${process.env.REACT_APP_GOOGLE_CLIENT_ID}&
 redirect_uri=${process.env.REACT_APP_APP_URL}/oauth/google/callback&
 response_type=code&
 access_type=offline&
 scope=https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile&
 prompt=consent
+`
+    }
+
+    yahooLogin(event) {
+        console.log('yahooLogin', this)
+        window.location.href = `https://api.login.yahoo.com/oauth2/request_auth?
+client_id=${process.env.REACT_APP_YAHOO_CLIENT_ID}&
+redirect_uri=${process.env.REACT_APP_APP_URL}/oauth/yahoo/callback&
+response_type=code&
+access_type=offline&
+language=en-us
 `
     }
 
@@ -67,10 +79,15 @@ prompt=consent
             <div className="article">
                 <div className="article_title">
                     <div className="row justify-content-between validate">
-                        <div className="col-5">
+                        <div className="col-2">
                             <button className="btn btn-light"
                                 onClick={this.googleLogin}
-                            > Google OAuth </button>
+                            > Google Login </button>
+                        </div>
+                        <div className="col-2">
+                            <button className="btn btn-light"
+                                onClick={this.yahooLogin}
+                            > Yahoo Login </button>
                         </div>
                         <div className="col-7">
                             <p className="error_code">{this.state.loginErrors}</p>
