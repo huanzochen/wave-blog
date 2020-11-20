@@ -7,6 +7,7 @@ import LoginAll from './components/LoginAll'
 import Articlepad from './components/Articlepad'
 import ArticleDetail from './components/ArticleDetail'
 
+import NewWorld from './newworld/main/NewWorld'
 
 
 const RouteFallback = (props) => { 
@@ -30,7 +31,7 @@ export default class App extends React.Component {
   }
     
   checkLoginStatus() {
-    axios.get( process.env.REACT_APP_API_URL + '/api/logged_in', { withCredentials:true})
+    axios.get(process.env.REACT_APP_API_URL + '/api/logged_in', { withCredentials:true})
       .then(response => {
         if (response.data.logged_in && this.state.loggedInStatus === 'NOT_LOGGED_IN') {
           this.setState({
@@ -73,7 +74,7 @@ export default class App extends React.Component {
 
 
   handleLogoutClick() {
-    axios.get( process.env.REACT_APP_API_URL + '/api/logout/submit', { withCredentials: true})
+    axios.get(process.env.REACT_APP_API_URL + '/api/logout/submit', { withCredentials: true})
       .then((response) => {
         this.handleLogout()
       })
@@ -86,14 +87,14 @@ export default class App extends React.Component {
     return (
       <BrowserRouter>
         <Switch>
-          {routes.map((route,i) => {
+          {routes.map((route, i) => {
             const { path, exact, routes } = route
             return (
               <Route 
                 key={i}
                 path={path} 
                 exact={exact} 
-                render={(routeProps) => (
+                render={(routeProps) => 
                   <route.component routes={routes} {...routeProps}
                     handleLogin={this.handleLogin}
                     handleLogout={this.handleLogout}
@@ -101,7 +102,7 @@ export default class App extends React.Component {
                     loggedInStatus={this.state.loggedInStatus}
                     username={this.state.username}
                   />
-                )} />
+                } />
             )
           })}
         </Switch>
@@ -153,6 +154,12 @@ const routes = [
     component: ArticleDetail,
     exact: false,
     breadcrumbName: 'Index'
+  },
+  {
+    path: '/newworld',
+    component: NewWorld,
+    exact: false,
+    breadcrumbName: 'Newworld'
   },
   {
     path: '/',

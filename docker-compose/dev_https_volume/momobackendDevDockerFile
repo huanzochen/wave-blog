@@ -2,3 +2,4 @@ FROM node:10.19
 
 WORKDIR /keepup
 COPY ./keepup /keepup
+WORKDIR /momobackend

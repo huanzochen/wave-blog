@@ -51,7 +51,7 @@ services:
     volumes:
       - ../../src/momobackend:/momobackend
     container_name: service
-    entrypoint: ["sh","docker-entrypoint.sh"]
+    entrypoint: ["sh","/keepup/docker-entrypoint.sh"]
       
   web:
     build:
@@ -75,7 +75,7 @@ services:
     volumes:
       - ../../src/momoblog:/momoblog
     container_name: web
-    entrypoint: ["sh","docker-entrypoint.sh"]
+    entrypoint: ["sh","/keepup/docker-entrypoint.sh"]
       
   mysql:
     image: mysql:8.0.21

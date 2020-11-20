@@ -2,12 +2,13 @@ import React from 'react'
 import axios from 'axios'
 import qs from 'querystring'
 
-import Login from '../auth/Login'
-import SideBtnList from './SideBtnList'
+import NewWorldOAuth from '../auth/NewWorldOAuth'
+import SideBtnList from '../../components/SideBtnList'
+import Yahoo from '../components/Yahoo'
 
 
 
-export default class LoginAll extends React.Component {
+export default class NewWorld extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -35,7 +36,6 @@ export default class LoginAll extends React.Component {
     else if (this.props.location.search !== '' && this.props.location.pathname === '/oauth/yahoo/callback') {
       this.yahooOAuthCheck()
     }
-    const sss = ['s', 'sad', 'asd']
   }
 
   googleOAuthCheck() {
@@ -113,7 +113,12 @@ export default class LoginAll extends React.Component {
           <div id="main" className="col-9">
             <h1 className="title display-3"><span className="badge badge-secondary">茉茉部落格</span></h1>
             <div className="inner">
-              <Login handleSuccessfulAuth={this.handleSuccessfulAuth} />
+              <div className="article">
+                <div className="article_title">
+                  <NewWorldOAuth handleSuccessfulAuth={this.handleSuccessfulAuth} />
+                  <Yahoo />
+                </div>
+              </div>
             </div>
           </div>
           <div id="sidebar" className="col-3">
