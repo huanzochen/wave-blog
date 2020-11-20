@@ -15,6 +15,13 @@
         "brace-style": ["error", "stroustrup", { "allowSingleLine": true }],
         "space-infix-ops": ["error"],
         "array-bracket-spacing": ["error", "never"],
-        "lines-around-comment": ["error", { "beforeBlockComment": true }]
+        "lines-around-comment": ["error", { "beforeBlockComment": true }],
+        "indent": ["error", 2],
+        "no-mixed-spaces-and-tabs": ["error", "smart-tabs"],
+        "no-multi-spaces": ["error"],
+        "block-spacing": ["error"],
+        "no-extra-parens": ["error"],
+        "space-in-parens": ["error", "never"],
+        "comma-spacing": ["error",{ "before": false, "after": true }]
     }
 }

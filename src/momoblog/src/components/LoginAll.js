@@ -8,92 +8,123 @@ import SideBtnList from './SideBtnList'
 
 
 export default class LoginAll extends React.Component {
-    constructor(props) {
-      super(props)
-      this.state = {
-        googleOAuth:{
-          authuser:'',
-          code:'',
-          prompt:'',
-          scope:''
-        }
-      }
-      this.googleOAuthCheck = this.googleOAuthCheck.bind(this)
-      this.handleSuccessfulAuth = this.handleSuccessfulAuth.bind(this)
-      this.googleOAuthExchange = this.googleOAuthExchange.bind(this)
-    }
-
-    componentDidMount() {
-      if (this.props.location.search !== '' && this.props.location.pathname === '/oauth/google/callback') {
-        this.googleOAuthCheck()
-      }
-      else if (this.props.location.search !== '' && this.props.location.pathname === '/oauth/google/callback/exchange') {
-        console.log('callback/exchange')
-      }
-      const sss = ['s', 'sad', 'asd']
-    }
-
-    googleOAuthCheck() {
-      const googleOAuth = {}
-      console.log('googleOAuthCheck')
-      if (this.props.location.search !== '') {
-        this.props.location.search.split('?')[1].split('&').map((param) => {
-          googleOAuth[param.split('=')[0]] = decodeURIComponent(param.split('=')[1])
-        })
-        this.setState({googleOAuth}, this.googleOAuthExchange)
+  constructor(props) {
+    super(props)
+    this.state = {
+      googleOAuth:{
+        authuser:'',
+        code:'',
+        prompt:'',
+        scope:''
+      },
+      yahooOAuth:{
+        code:''
       }
     }
+    this.googleOAuthCheck = this.googleOAuthCheck.bind(this)
+    this.googleOAuthExchange = this.googleOAuthExchange.bind(this)
+    this.yahooOAuthCheck = this.yahooOAuthCheck.bind(this)
+    this.yahooOAuthExchange = this.yahooOAuthExchange.bind(this)
+    this.handleSuccessfulAuth = this.handleSuccessfulAuth.bind(this)
+  }
 
-    googleOAuthExchange() {
-      const requestBody = {
-        client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
-        client_secret: process.env.REACT_APP_GOOGLE_CLIENT_SECRET,
-        code: this.state.googleOAuth.code,
-        redirect_uri: `${process.env.REACT_APP_APP_URL}/oauth/google/callback`,
-        grant_type: 'authorization_code'
+  componentDidMount() {
+    if (this.props.location.search !== '' && this.props.location.pathname === '/oauth/google/callback') {
+      this.googleOAuthCheck()
+    }
+    else if (this.props.location.search !== '' && this.props.location.pathname === '/oauth/yahoo/callback') {
+      this.yahooOAuthCheck()
+    }
+    const sss = ['s', 'sad', 'asd']
+  }
+
+  googleOAuthCheck() {
+    const googleOAuth = {}
+    this.props.location.search.split('?')[1].split('&').map((param) => {
+      googleOAuth[param.split('=')[0]] = decodeURIComponent(param.split('=')[1])
+    })
+    this.setState({googleOAuth}, this.googleOAuthExchange)
+  }
+
+  yahooOAuthCheck() {
+    const yahooOAuth = {}
+    this.props.location.search.split('?')[1].split('&').map((param) => {
+      yahooOAuth[param.split('=')[0]] = decodeURIComponent(param.split('=')[1])
+    })
+    this.setState({yahooOAuth}, this.yahooOAuthExchange)
+  }
+
+  googleOAuthExchange() {
+    const requestBody = {
+      client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
+      client_secret: process.env.REACT_APP_GOOGLE_CLIENT_SECRET,
+      redirect_uri: `${process.env.REACT_APP_APP_URL}/oauth/google/callback`,
+      code: this.state.googleOAuth.code,
+      grant_type: 'authorization_code'
+    }
+    const config = {
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
       }
-      const config = {
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
-        }
+    }
+    axios.post('https://oauth2.googleapis.com/token', qs.stringify(requestBody), config)
+      .then(response => {
+        console.log('response')
+        console.log(response)
+      })
+      .catch(error => {
+        console.dir('googleOAuthExchange 出現錯誤!')
+        console.log(error)
+      })
+  }
+
+  yahooOAuthExchange() {
+    const requestBody = {
+      client_id: process.env.REACT_APP_YAHOO_CLIENT_ID,
+      client_secret: process.env.REACT_APP_YAHOO_CLIENT_SECRET,
+      redirect_uri: `${process.env.REACT_APP_APP_URL}/oauth/yahoo/callback`,
+      code: this.state.yahooOAuth.code,
+      grant_type: 'authorization_code'
+    }
+    const config = {
+      headers: {
+        'Authorization': btoa(`${process.env.REACT_APP_YAHOO_CLIENT_ID}:${process.env.REACT_APP_YAHOO_CLIENT_SECRET}`),
+        'Content-Type': 'application/x-www-form-urlencoded'
       }
-      axios.post( 'https://oauth2.googleapis.com/token', qs.stringify(requestBody), config)
+    }
+    axios.post('https://api.login.yahoo.com/oauth2/get_token', qs.stringify(requestBody), config)
       .then(response => {
         console.log('response')
         console.log(response)
         console.log('response.data')
         console.log(response.data)
       })
-      .catch(error => {
-          console.dir('googleOAuthExchange 出現錯誤!')
-          console.log(error)
-      })
-    }
+  }
 
-    handleSuccessfulAuth(data) {
-      this.props.handleLogin(data)
-      this.props.history.push('/')
-    }
+  handleSuccessfulAuth(data) {
+    this.props.handleLogin(data)
+    this.props.history.push('/')
+  }
 
-    render() {
-      return (
-        <div className="container-fluid">
-          <div className="row">
-            <div id="main" className="col-9">
-              <h1 className="title display-3"><span className="badge badge-secondary">茉茉部落格</span></h1>
-              <div className="inner">
-                  <Login handleSuccessfulAuth={this.handleSuccessfulAuth} />
-              </div>
+  render() {
+    return (
+      <div className="container-fluid">
+        <div className="row">
+          <div id="main" className="col-9">
+            <h1 className="title display-3"><span className="badge badge-secondary">茉茉部落格</span></h1>
+            <div className="inner">
+              <Login handleSuccessfulAuth={this.handleSuccessfulAuth} />
             </div>
-            <div id="sidebar" className="col-3">
-              <div className="inner">
-                <nav id="menu">
-                  <SideBtnList />
-                </nav>
-              </div>
+          </div>
+          <div id="sidebar" className="col-3">
+            <div className="inner">
+              <nav id="menu">
+                <SideBtnList />
+              </nav>
             </div>
           </div>
         </div>
-      )
-    }
+      </div>
+    )
+  }
 }
