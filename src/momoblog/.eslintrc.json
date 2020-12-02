@@ -1,0 +1,27 @@
+{
+    "parserOptions": {
+        "ecmaVersion": 7,
+        "sourceType": "module",
+        "ecmaFeatures": { // 添加ES特性支持，使之能够识别ES6语法
+          "jsx": true
+        }
+    },
+    "rules": {
+        "quotes": ["error", "single"],
+        "semi": ["error", "never"],
+        "space-before-blocks": ["error", "always"],
+        "arrow-spacing": "error",
+        "keyword-spacing": "error",
+        "brace-style": ["error", "stroustrup", { "allowSingleLine": true }],
+        "space-infix-ops": ["error"],
+        "array-bracket-spacing": ["error", "never"],
+        "lines-around-comment": ["error", { "beforeBlockComment": true }],
+        "indent": ["error", 2],
+        "no-mixed-spaces-and-tabs": ["error", "smart-tabs"],
+        "no-multi-spaces": ["error"],
+        "block-spacing": ["error"],
+        "no-extra-parens": ["error"],
+        "space-in-parens": ["error", "never"],
+        "comma-spacing": ["error",{ "before": false, "after": true }]
+    }
+}
