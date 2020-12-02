@@ -4,6 +4,7 @@ import qs from 'querystring'
 
 import Login from '../auth/Login'
 import SideBtnList from './SideBtnList'
+import YahooPanel from '../auth/YahooPanel'
 
 
 
@@ -94,9 +95,7 @@ export default class LoginAll extends React.Component {
     }
     axios.post('https://api.login.yahoo.com/oauth2/get_token', qs.stringify(requestBody), config)
       .then(response => {
-        console.log('response')
-        console.log(response)
-        console.log('response.data')
+        console.log('yahooOAuthExchange response.data')
         console.log(response.data)
       })
   }
@@ -107,13 +106,20 @@ export default class LoginAll extends React.Component {
   }
 
   render() {
+    let LoginPanel
+    if (this.state.yahooOAuth.code !== '') {
+      LoginPanel = <YahooPanel handleSuccessfulAuth={this.handleSuccessfulAuth} />
+    }
+    else {
+      LoginPanel = <Login handleSuccessfulAuth={this.handleSuccessfulAuth} />
+    }
     return (
       <div className="container-fluid">
         <div className="row">
           <div id="main" className="col-9">
             <h1 className="title display-3"><span className="badge badge-secondary">茉茉部落格</span></h1>
             <div className="inner">
-              <Login handleSuccessfulAuth={this.handleSuccessfulAuth} />
+              {LoginPanel}
             </div>
           </div>
           <div id="sidebar" className="col-3">
