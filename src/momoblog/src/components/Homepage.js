@@ -47,7 +47,7 @@ export default class Homepage extends React.Component {
           <div id="main" className="col-md-9">
             <Link to="Homepage"><h1 className="title display-3"><span className="badge badge-secondary">茉茉部落格</span></h1></Link>
             <div className="inner">
-              { !(this.state.isArticleDetail) && 
+              { !this.state.isArticleDetail && 
                   <div>
                     <AddarticleListener
                       handleLogoutClick={this.props.handleLogoutClick}
