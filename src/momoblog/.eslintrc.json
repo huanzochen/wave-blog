@@ -24,6 +24,10 @@
         "space-in-parens": ["error", "never"],
         "comma-spacing": ["error",{ "before": false, "after": true }],
         // 優先使用數組或對象解構 (prefer-destructuring)
-        "prefer-destructuring": ["error", {"object": true, "array": true}, {"enforceForRenamedProperties": false}]
+        "prefer-destructuring": ["error", {"object": true, "array": true}, {"enforceForRenamedProperties": false}],
+        // 建議使用擴展語法而非.apply()
+        "prefer-spread": ["error"],
+        // 優先使用對象擴展而不是 https://cn.eslint.org/docs/rules/prefer-object-spread
+        "prefer-object-spread": ["error"]
     }
 }
