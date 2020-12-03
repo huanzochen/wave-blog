@@ -27,6 +27,7 @@ prompt=consent
     
     yahooLogin(event) {
         console.log('yahooLogin', this)
+        console.log('client_id' + process.env.REACT_APP_YAHOO_CLIENT_ID)
         window.location.href = `https://api.login.yahoo.com/oauth2/request_auth?
 client_id=${process.env.REACT_APP_YAHOO_CLIENT_ID}&
 redirect_uri=${process.env.REACT_APP_APP_URL}/oauth/yahoo/callback&

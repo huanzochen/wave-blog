@@ -94,7 +94,6 @@ export default class LoginAll extends React.Component {
     }
     const config = {
       headers: {
-        // 'Authorization': `Basic ENCODED(${btoa(process.env.REACT_APP_YAHOO_CLIENT_ID + ':' + process.env.REACT_APP_YAHOO_CLIENT_SECRET)})`,
         'Content-Type': 'application/x-www-form-urlencoded'
       }
     }
@@ -111,6 +110,38 @@ export default class LoginAll extends React.Component {
         )
         this.setState({yahooOAuthCredentials})
       })
+
+    /*** try with fcetch but failed */
+    // const formBody = Object.keys(requestBody).map(key => encodeURIComponent(key) + '=' + encodeURIComponent(requestBody[key])).join('&');
+    // console.log('formBody')
+    // console.log(formBody)
+    // fetch('https://api.login.yahoo.com/oauth2/get_token', {
+    //   method: 'POST',
+    //   mode: 'no-cors',
+    //   body: formBody,
+    //   headers: {
+    //     'Content-Type': 'application/x-www-form-urlencoded'
+    //   }
+    // }).then(response => {
+    //   // console.log('fetch have response')
+    //   // console.log(response)
+    //   // // let yahooOAuthCredentials = {}
+    //   // // Promise.all(
+    //   // //   Object.keys(response.data).map((key) => {
+    //   // //     yahooOAuthCredentials = {
+    //   // //       ...yahooOAuthCredentials,
+    //   // //       [key]: response.data[key]
+    //   // //     }
+    //   // //   })
+    //   // // )
+    //   // // this.setState({yahooOAuthCredentials})
+    //   return response
+    // }).then(function(response){
+    //   console.log('response')
+    //   console.log(response);
+    // }).catch(function(e){
+    //   console.log(e);
+    // });
   }
 
   handleSuccessfulAuth(data) {

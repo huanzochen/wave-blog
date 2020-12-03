@@ -22,6 +22,8 @@
         "block-spacing": ["error"],
         "no-extra-parens": ["error"],
         "space-in-parens": ["error", "never"],
-        "comma-spacing": ["error",{ "before": false, "after": true }]
+        "comma-spacing": ["error",{ "before": false, "after": true }],
+        // 優先使用數組或對象解構 (prefer-destructuring)
+        "prefer-destructuring": ["error", {"object": true, "array": true}, {"enforceForRenamedProperties": false}]
     }
 }
