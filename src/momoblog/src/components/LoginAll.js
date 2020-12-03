@@ -20,6 +20,12 @@ export default class LoginAll extends React.Component {
       },
       yahooOAuth:{
         code:''
+      },
+      yahooOAuthCredentials:{
+        access_token:'',
+        refresh_token:'',
+        token_type:'',
+        expired_in:'',
       }
     }
     this.googleOAuthCheck = this.googleOAuthCheck.bind(this)
@@ -36,7 +42,6 @@ export default class LoginAll extends React.Component {
     else if (this.props.location.search !== '' && this.props.location.pathname === '/oauth/yahoo/callback') {
       this.yahooOAuthCheck()
     }
-    const sss = ['s', 'sad', 'asd']
   }
 
   googleOAuthCheck() {
@@ -95,8 +100,16 @@ export default class LoginAll extends React.Component {
     }
     axios.post('https://api.login.yahoo.com/oauth2/get_token', qs.stringify(requestBody), config)
       .then(response => {
-        console.log('yahooOAuthExchange response.data')
-        console.log(response.data)
+        let yahooOAuthCredentials = {}
+        Promise.all(
+          Object.keys(response.data).map((key) => {
+            yahooOAuthCredentials = {
+              ...yahooOAuthCredentials,
+              [key]: response.data[key]
+            }
+          })
+        )
+        this.setState({yahooOAuthCredentials})
       })
   }
 
@@ -108,7 +121,10 @@ export default class LoginAll extends React.Component {
   render() {
     let LoginPanel
     if (this.state.yahooOAuth.code !== '') {
-      LoginPanel = <YahooPanel handleSuccessfulAuth={this.handleSuccessfulAuth} />
+      LoginPanel = <YahooPanel 
+                    handleSuccessfulAuth={this.handleSuccessfulAuth} 
+                    yahooOAuthCredentials={this.state.yahooOAuthCredentials}
+                    />
     }
     else {
       LoginPanel = <Login handleSuccessfulAuth={this.handleSuccessfulAuth} />

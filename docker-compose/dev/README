@@ -1,8 +1,8 @@
 ## How to restore data in mysql?
 ```
-sudo docker exec -i mysql sh -c 'exec mysql -u"${MYSQL_USER}" -p"${MYSQL_PASSWORD}" blog' < ../../documents/mysqldump/sqldump.sql
+sudo docker exec -i mysql sh -c 'exec mysql -u"${MYSQL_USER}" -p"${MYSQL_PASSWORD}" blog' < ../../documents/mysqldump/Dump20201202.sql
 ```
 ## How to export data in mysql?
 ```
-sudo docker exec -i mysql sh -c 'exec mysql -u"${MYSQL_USER}" -p"${MYSQL_PASSWORD}" blog' > ../../documents/mysqldump/sqldump.sql
+sudo docker exec -i mysql sh -c 'exec mysql -u"${MYSQL_USER}" -p"${MYSQL_PASSWORD}" blog' > ../../documents/mysqldump/Dump202012xx.sql
 ```
