@@ -25,7 +25,7 @@ export default class LoginAll extends React.Component {
         access_token:'',
         refresh_token:'',
         token_type:'',
-        expired_in:'',
+        expires_in:'',
       }
     }
     this.googleOAuthCheck = this.googleOAuthCheck.bind(this)

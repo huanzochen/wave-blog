@@ -14,8 +14,8 @@ body, input, select, textarea {
 
 a, li, p, h1 {
   overflow:hidden;
-  word-wrap:normal;
-}
+  word-wrap: nowrap;
+} 
 
 h1 {
   padding-bottom: 0.3em;
@@ -124,7 +124,9 @@ h1 {
   margin-bottom:50em;
 }
 
-
+.panelcontent {
+  word-wrap: break-word;
+}
 
 
 

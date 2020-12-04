@@ -61,7 +61,7 @@ export default class Login extends React.Component {
     // }
     const requestBody = {
       'reportOption': {
-        'timezone': 'America/New_York',
+        'timezone': 'Asia/Shanghai',
         'currency': 4,
         'dimensionTypeIds': [5],
         'metricTypeIds': [44, 1, 2, 23, 11, 41, 43]
@@ -113,7 +113,9 @@ export default class Login extends React.Component {
       .then(response => {
         console.log('getTestReports response.data')
         console.log(response.data)
-        // let testReports = {};
+        if (response.data.status === "Success") {
+          window.location.href = response.data.url
+        }
       })
       .catch(error => {
         console.dir('getTestReports 出現錯誤!')
@@ -148,6 +150,12 @@ export default class Login extends React.Component {
             <div className="col-7">
               <p className="error_code">{this.state.loginErrors}</p>
             </div>
+          </div>
+          <div className="col-12">
+            <p className="panelcontent">access_token = {this.props.yahooOAuthCredentials.access_token}</p>
+            <p className="panelcontent">refresh_token = {this.props.yahooOAuthCredentials.refresh_token}</p>
+            <p className="panelcontent">token_type = {this.props.yahooOAuthCredentials.token_type}</p>
+            <p className="panelcontent">expires_in = {this.props.yahooOAuthCredentials.expires_in}</p>
           </div>
         </div>
       </div>
