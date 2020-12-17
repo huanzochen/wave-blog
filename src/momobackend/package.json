@@ -27,6 +27,7 @@
     "mysql2": "^2.1.0",
     "nodemon": "^2.0.2",
     "power-assert": "^1.6.1",
+    "socket.io": "^3.0.4",
     "supertest": "^4.0.2"
   },
   "devDependencies": {

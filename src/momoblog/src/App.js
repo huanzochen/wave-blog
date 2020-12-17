@@ -1,12 +1,12 @@
 import { BrowserRouter, Switch, Route, Redirect} from 'react-router-dom'
 import axios from 'axios'
 import React from 'react'
+import socketIOClient from 'socket.io-client'
 import Homepage from './components/Homepage'
 import RegisterAll from './components/RegisterAll'
 import LoginAll from './components/LoginAll'
 import Articlepad from './components/Articlepad'
 import ArticleDetail from './components/ArticleDetail'
-
 import NewWorld from './newworld/main/NewWorld'
 
 
@@ -18,16 +18,21 @@ const RouteFallback = (props) => {
   }} /> 
 }
 
+let ws
 export default class App extends React.Component {
   constructor() {
     super()
     this.state = {
       loggedInStatus: 'NOT_LOGGED_IN',
-      username: {}
+      username: {},
     }
     this.handleLogin = this.handleLogin.bind(this)
     this.handleLogout = this.handleLogout.bind(this)
     this.handleLogoutClick = this.handleLogoutClick.bind(this)
+    this.sendMessage = this.sendMessage.bind(this)
+
+    // webSocket init
+    ws = socketIOClient(process.env.REACT_APP_API_URL)
   }
     
   checkLoginStatus() {
@@ -53,8 +58,18 @@ export default class App extends React.Component {
       
   }
 
+  sendMessage() {
+    ws.emit('getMessage', ' ~我是第一封測試訊息~ ')
+  }
+
   componentDidMount() {
     this.checkLoginStatus()
+
+    // webSocket 初始化
+    ws.on('getMessage', (message) => {
+      console.log(' 前端收到一封 getMessage webSocket, 該訊息為: ' + message + '\n')
+    })
+    this.sendMessage()
   }
     
 

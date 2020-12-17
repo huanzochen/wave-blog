@@ -89,3 +89,10 @@ services:
     volumes:
       - ../dev/mysql:/var/lib/mysql
     container_name: mysql
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    container_name: adminer

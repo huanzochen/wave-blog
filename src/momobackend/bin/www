@@ -16,10 +16,11 @@ var port = normalizePort(process.env.PORT || '3200');
 app.set('port', port);
 
 /**
- * Create HTTP server.
+ * Create HTTP server, and bind socketio on it
  */
 
 var server = http.createServer(app);
+var io = require('socket.io')(server)
 
 /**
  * Listen on provided port, on all network interfaces.
@@ -88,3 +89,17 @@ function onListening() {
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
+
+
+/**
+ * io listening 
+ */
+io.on('connection', socket => {
+  console.log("New Socket client connected, " + socket.id);
+  // console.log(socket);
+  socket.on('getMessage', (message) => {
+    console.log('接收到訊息啦! 前端發送的訊息為:' + message)
+    // 回傳 message 給發送訊息的 client
+    socket.emit('getMessage', '~我是後端我收到訊息了!~' )
+  })
+})
