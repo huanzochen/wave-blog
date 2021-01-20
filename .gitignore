@@ -98,3 +98,12 @@ dist
 
 # TernJS port file
 .tern-port
+
+# .envs
+docker-compose/*/*.env
+
+# mysql dev data
+docker-compose/*/mysql
+
+# HTTPS crendentials
+docker-compose/*/letsencrypt
